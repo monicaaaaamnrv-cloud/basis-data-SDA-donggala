@@ -112,10 +112,10 @@ function LoginPage({ onLogin }) {
     if (!usr || !pwd) { setErr("Username dan password wajib diisi."); return; }
     setL(true);
     setTimeout(() => {
-      if (usr === "admin" && pwd === "pupr2025")
+      if (usr === "admin" && pwd === "sda2026")
         onLogin({ nama:"Administrator", jabatan:"Admin Sistem", role:"admin" });
-      else if (usr === "sda" && pwd === "donggala")
-        onLogin({ nama:"Staf Bidang SDA", jabatan:"Staf Teknis", role:"staf" });
+      else if (usr === "user" && pwd === "usersda2026")
+        onLogin({ nama:"Pengunjung", jabatan:"Pengguna Umum", role:"user" });
       else { setErr("Username atau password salah."); setL(false); }
     }, 1000);
   };
@@ -214,7 +214,7 @@ function LoginPage({ onLogin }) {
           </button>
 
           <div style={{ textAlign:"center", marginTop:16, fontSize:12, color:C.gray300 }}>
-            © 2025 Bidang SDA — Dinas PUPR Kab. Donggala
+            © 2026 Bidang SDA — Dinas PUPR Kab. Donggala
           </div>
         </div>
       </div>
@@ -530,11 +530,11 @@ function FormModal({ mode, data, onSave, onClose }) {
 }
 
 // ── DATA PAGE ────────────────────────────────────────────────────
-function DataPage() {
+function DataPage({ user }) {
   const [data, setData]         = useState(daerahIrigasi);
   const [search, setSearch]     = useState("");
   const [filter, setFilter]     = useState("Semua");
-  const [tahun, setTahun]       = useState("2025");
+  const [tahun, setTahun]       = useState("2026");
   const [selected, setSelected] = useState(null);
   const [formMode, setFormMode] = useState(null); // null | "add" | "edit"
   const [editTarget, setEditTarget] = useState(null);
@@ -596,22 +596,24 @@ function DataPage() {
             <select value={tahun} onChange={e=>setTahun(e.target.value)}
               style={{ border:"none", outline:"none", fontSize:13, fontWeight:700,
                 color:C.blueMid, background:"transparent", cursor:"pointer" }}>
-              {["2021","2022","2023","2024","2025","2026","2027","2028","2029","2030"].map(y=>(
+              {["2025","2026","2027","2028","2029","2030","2031","2032","2033","2034","2035","2036","2037","2038","2039","2040"].map(y=>(
                 <option key={y} value={y}>{y}</option>
               ))}
             </select>
           </div>
+          {user?.role === "admin" && (
           <button onClick={()=>setFormMode("add")}
             style={{ background:C.orange, color:C.white, border:"none", borderRadius:9,
               padding:"10px 18px", fontSize:13, fontWeight:700, cursor:"pointer",
               boxShadow:`0 4px 12px rgba(247,148,29,.3)` }}>
             ＋ Tambah Data
           </button>
+          )}
         </div>
       </div>
 
       {/* Banner info tahun — beda tampilan untuk tahun lampau vs tahun aktif/mendatang */}
-      {parseInt(tahun) <= 2025 ? (
+      {parseInt(tahun) <= 2026 ? (
         <div style={{ background:C.blueLight, border:`1px solid #C7D7F5`, borderRadius:9,
           padding:"10px 16px", marginBottom:16, display:"flex", alignItems:"center", gap:10 }}>
           <span style={{ fontSize:16 }}>ℹ️</span>
@@ -693,10 +695,12 @@ function DataPage() {
                         style={{ padding:"5px 10px", borderRadius:6, border:`1px solid ${C.blueMid}`,
                           background:C.blueLight, color:C.blueMid, cursor:"pointer",
                           fontSize:11, fontWeight:600 }}>Detail</button>
+                      {user?.role === "admin" && (
                       <button onClick={()=>{ setEditTarget(d); setFormMode("edit"); }}
                         style={{ padding:"5px 10px", borderRadius:6,
                           border:`1px solid ${C.orange}`, background:C.orangeLight,
                           color:C.orange, cursor:"pointer", fontSize:11, fontWeight:600 }}>Edit</button>
+                      )}
                     </div>
                   </td>
                 </tr>
@@ -747,10 +751,12 @@ function DataPage() {
                 </div>
               ))}
               <div style={{ display:"flex", justifyContent:"flex-end", marginTop:8 }}>
+                {user?.role === "admin" && (
                 <button onClick={()=>{ setSelected(null); setEditTarget(selected); setFormMode("edit"); }}
                   style={{ padding:"9px 20px", borderRadius:8, border:"none",
                     background:C.orange, color:C.white, cursor:"pointer",
                     fontSize:13, fontWeight:700 }}>✏️ Edit Data Ini</button>
+                )}
               </div>
             </div>
           </div>
@@ -793,7 +799,7 @@ export default function App() {
 
   const renderPage = () => {
     if (active==="dashboard") return <Dashboard />;
-    if (active==="data")      return <DataPage />;
+    if (active==="data")      return <DataPage user={user} />;
     if (active==="sungai")    return <PlaceholderPage icon="🌊" title="Data Sungai & Pantai"    desc="Basis data kondisi sungai dan garis pantai Kab. Donggala" />;
     if (active==="peta")      return <PlaceholderPage icon="🗺️" title="Peta Sebaran Irigasi"    desc="Visualisasi spasial jaringan irigasi Kab. Donggala" />;
     if (active==="laporan")   return <PlaceholderPage icon="📋" title="Modul Laporan"         desc="Cetak dan ekspor laporan kondisi jaringan irigasi"  />;
