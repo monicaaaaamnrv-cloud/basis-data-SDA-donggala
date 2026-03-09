@@ -162,7 +162,7 @@ function LoginPage({ onLogin }) {
         <div style={{ padding:"32px 36px 36px" }}>
           <div style={{ fontSize:20, fontWeight:700, color:C.gray900 }}>Selamat Datang</div>
           <div style={{ fontSize:13, color:C.gray500, marginBottom:24, marginTop:4 }}>
-            Sistem Basis Data Jaringan Irigasi
+            Sistem Basis Data Bidang SDA DPUPR Kab. Donggala
           </div>
 
           {err && (
@@ -213,9 +213,8 @@ function LoginPage({ onLogin }) {
             {loading ? "Memverifikasi..." : "Masuk →"}
           </button>
 
-          <div style={{ textAlign:"center", marginTop:20, padding:"12px", background:C.gray50,
-            borderRadius:8, fontSize:12, color:C.gray500 }}>
-            Demo login: <strong>admin</strong> / <strong>pupr2025</strong>
+          <div style={{ textAlign:"center", marginTop:16, fontSize:12, color:C.gray300 }}>
+            © 2025 Bidang SDA — Dinas PUPR Kab. Donggala
           </div>
         </div>
       </div>
@@ -227,6 +226,7 @@ function LoginPage({ onLogin }) {
 const menus = [
   { key:"dashboard", icon:"📊", label:"Dashboard" },
   { key:"data",      icon:"🗂️",  label:"Data Jaringan Irigasi" },
+  { key:"sungai",    icon:"🌊",  label:"Data Sungai/Pantai" },
   { key:"peta",      icon:"🗺️",  label:"Peta Sebaran" },
   { key:"laporan",   icon:"📋", label:"Laporan" },
   { key:"pengguna",  icon:"👥", label:"Manajemen Pengguna" },
@@ -390,35 +390,251 @@ function Dashboard() {
   );
 }
 
+// ── FORM MODAL (Tambah / Edit) ───────────────────────────────────
+const EMPTY_FORM = { nama:"", kecamatan:"", luasDI:"", luasSawah:"", nilaiBendung:"",
+  kondisi:"Rusak Sedang", status:"Aktif" };
+
+function FormModal({ mode, data, onSave, onClose }) {
+  const [form, setForm] = useState(mode==="edit" ? {
+    nama: data.nama, kecamatan: data.kecamatan,
+    luasDI: data.luasDI, luasSawah: data.luasSawah,
+    nilaiBendung: data.nilaiBendung, kondisi: data.kondisi, status: data.status,
+  } : EMPTY_FORM);
+  const [err, setErr] = useState("");
+
+  const inp = (field, val) => setForm(f=>({...f, [field]:val}));
+
+  const fieldStyle = { width:"100%", padding:"9px 12px", border:`1.5px solid ${C.gray300}`,
+    borderRadius:8, fontSize:13, color:C.gray900, outline:"none", boxSizing:"border-box" };
+  const labelStyle = { fontSize:12, fontWeight:600, color:C.gray700,
+    display:"block", marginBottom:5, marginTop:14 };
+
+  const handleSave = () => {
+    if (!form.nama.trim()) { setErr("Nama D.I. wajib diisi."); return; }
+    if (!form.kecamatan.trim()) { setErr("Kecamatan wajib diisi."); return; }
+    if (!form.luasDI || isNaN(form.luasDI) || Number(form.luasDI)<=0) {
+      setErr("Luas D.I. harus berupa angka positif."); return; }
+    setErr("");
+    onSave({
+      ...form,
+      luasDI: Number(form.luasDI),
+      luasSawah: Number(form.luasSawah)||0,
+      nilaiBendung: Number(form.nilaiBendung)||0,
+    });
+  };
+
+  return (
+    <div style={{ position:"fixed", inset:0, background:"rgba(0,0,0,.5)",
+      display:"flex", alignItems:"center", justifyContent:"center", zIndex:1000 }}
+      onClick={onClose}>
+      <div style={{ background:C.white, borderRadius:16, width:520, maxWidth:"94vw",
+        maxHeight:"90vh", overflowY:"auto", boxShadow:"0 24px 60px rgba(0,0,0,.3)" }}
+        onClick={e=>e.stopPropagation()}>
+
+        {/* Header */}
+        <div style={{ background:`linear-gradient(135deg,${C.blueDark},${C.blueMid})`,
+          padding:"18px 24px", display:"flex", justifyContent:"space-between", alignItems:"center",
+          position:"sticky", top:0, zIndex:1 }}>
+          <div>
+            <div style={{ color:C.orange, fontSize:11, fontWeight:700, textTransform:"uppercase" }}>
+              {mode==="edit" ? `Edit Data — ${data.kode}` : "Tambah Data Baru"}
+            </div>
+            <div style={{ color:C.white, fontSize:15, fontWeight:800, marginTop:2 }}>
+              {mode==="edit" ? data.nama : "Daerah Irigasi Baru"}
+            </div>
+          </div>
+          <button onClick={onClose}
+            style={{ background:"rgba(255,255,255,.15)", border:"none", color:C.white,
+              borderRadius:8, padding:"6px 12px", cursor:"pointer", fontSize:14 }}>✕</button>
+        </div>
+
+        {/* Body */}
+        <div style={{ padding:"20px 24px 28px" }}>
+          {err && (
+            <div style={{ background:"#FEE2E2", border:"1px solid #FECACA", color:C.red,
+              borderRadius:8, padding:"10px 14px", fontSize:13, marginBottom:14 }}>⚠️ {err}</div>
+          )}
+
+          <label style={labelStyle}>Nama Daerah Irigasi *</label>
+          <input value={form.nama} onChange={e=>inp("nama",e.target.value)}
+            placeholder="Contoh: D.I. Tambu" style={fieldStyle}
+            onFocus={e=>e.target.style.borderColor=C.blueMid}
+            onBlur={e=>e.target.style.borderColor=C.gray300}/>
+
+          <label style={labelStyle}>Kecamatan *</label>
+          <input value={form.kecamatan} onChange={e=>inp("kecamatan",e.target.value)}
+            placeholder="Contoh: Balaesang" style={fieldStyle}
+            onFocus={e=>e.target.style.borderColor=C.blueMid}
+            onBlur={e=>e.target.style.borderColor=C.gray300}/>
+
+          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12 }}>
+            <div>
+              <label style={labelStyle}>Luas D.I. (Ha) *</label>
+              <input type="number" value={form.luasDI} onChange={e=>inp("luasDI",e.target.value)}
+                placeholder="0" style={fieldStyle}
+                onFocus={e=>e.target.style.borderColor=C.blueMid}
+                onBlur={e=>e.target.style.borderColor=C.gray300}/>
+            </div>
+            <div>
+              <label style={labelStyle}>Luas Sawah (Ha)</label>
+              <input type="number" value={form.luasSawah} onChange={e=>inp("luasSawah",e.target.value)}
+                placeholder="0" style={fieldStyle}
+                onFocus={e=>e.target.style.borderColor=C.blueMid}
+                onBlur={e=>e.target.style.borderColor=C.gray300}/>
+            </div>
+          </div>
+
+          <label style={labelStyle}>Nilai Kondisi Bendung (%)</label>
+          <input type="number" min="0" max="100" value={form.nilaiBendung}
+            onChange={e=>inp("nilaiBendung",e.target.value)}
+            placeholder="0 - 100" style={fieldStyle}
+            onFocus={e=>e.target.style.borderColor=C.blueMid}
+            onBlur={e=>e.target.style.borderColor=C.gray300}/>
+
+          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12 }}>
+            <div>
+              <label style={labelStyle}>Kondisi Bendung</label>
+              <select value={form.kondisi} onChange={e=>inp("kondisi",e.target.value)} style={fieldStyle}>
+                {["Baik","Rusak Ringan","Rusak Sedang","Rusak Berat","Belum Didata"].map(o=>(
+                  <option key={o}>{o}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label style={labelStyle}>Status</label>
+              <select value={form.status} onChange={e=>inp("status",e.target.value)} style={fieldStyle}>
+                {["Aktif","Data Tidak Lengkap","Tidak Aktif"].map(o=>(
+                  <option key={o}>{o}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div style={{ display:"flex", gap:10, marginTop:24, justifyContent:"flex-end" }}>
+            <button onClick={onClose}
+              style={{ padding:"10px 20px", borderRadius:8, border:`1.5px solid ${C.gray300}`,
+                background:C.white, color:C.gray700, cursor:"pointer", fontSize:13, fontWeight:600 }}>
+              Batal
+            </button>
+            <button onClick={handleSave}
+              style={{ padding:"10px 24px", borderRadius:8, border:"none",
+                background:C.orange, color:C.white, cursor:"pointer",
+                fontSize:13, fontWeight:700, boxShadow:`0 4px 12px rgba(247,148,29,.35)` }}>
+              {mode==="edit" ? "💾 Simpan Perubahan" : "➕ Tambah Data"}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── DATA PAGE ────────────────────────────────────────────────────
 function DataPage() {
-  const [search, setSearch]   = useState("");
-  const [filter, setFilter]   = useState("Semua");
+  const [data, setData]         = useState(daerahIrigasi);
+  const [search, setSearch]     = useState("");
+  const [filter, setFilter]     = useState("Semua");
+  const [tahun, setTahun]       = useState("2025");
   const [selected, setSelected] = useState(null);
+  const [formMode, setFormMode] = useState(null); // null | "add" | "edit"
+  const [editTarget, setEditTarget] = useState(null);
+  const [toast, setToast]       = useState("");
 
-  const filtered = daerahIrigasi.filter(d => {
+  const showToast = (msg) => {
+    setToast(msg);
+    setTimeout(() => setToast(""), 3000);
+  };
+
+  const filtered = data.filter(d => {
     const q = search.toLowerCase();
-    const matchS = d.nama.toLowerCase().includes(q) ||
-                   d.kecamatan.toLowerCase().includes(q) ||
-                   d.kode.toLowerCase().includes(q);
-    return matchS && (filter==="Semua" || d.kondisi===filter);
+    return (d.nama.toLowerCase().includes(q) || d.kecamatan.toLowerCase().includes(q) ||
+            d.kode.toLowerCase().includes(q)) &&
+           (filter==="Semua" || d.kondisi===filter);
   });
+
+  const handleAdd = (form) => {
+    const newId   = Math.max(...data.map(d=>d.id)) + 1;
+    const newKode = `DI-${String(newId).padStart(3,"0")}`;
+    const today   = new Date().toISOString().slice(0,10);
+    setData(prev=>[...prev, { id:newId, kode:newKode, ...form, lastUpdate:today }]);
+    setFormMode(null);
+    showToast(`✅ Data "${form.nama}" berhasil ditambahkan!`);
+  };
+
+  const handleEdit = (form) => {
+    setData(prev=>prev.map(d=> d.id===editTarget.id
+      ? { ...d, ...form, lastUpdate:new Date().toISOString().slice(0,10) } : d));
+    setFormMode(null);
+    setEditTarget(null);
+    showToast(`✅ Data "${form.nama}" berhasil diperbarui!`);
+  };
 
   return (
     <div>
+      {/* Toast */}
+      {toast && (
+        <div style={{ position:"fixed", bottom:28, right:28, zIndex:2000,
+          background:C.blueDark, color:C.white, padding:"12px 20px",
+          borderRadius:10, fontSize:13, fontWeight:600,
+          boxShadow:"0 8px 24px rgba(0,0,0,.25)" }}>
+          {toast}
+        </div>
+      )}
+
       <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:20 }}>
         <div>
           <h2 style={{ fontSize:22, fontWeight:800, color:C.gray900, margin:0 }}>Data Jaringan Irigasi</h2>
           <p style={{ color:C.gray500, fontSize:14, marginTop:4 }}>Bidang SDA — Dinas PUPR Kab. Donggala</p>
         </div>
-        <button style={{ background:C.orange, color:C.white, border:"none", borderRadius:9,
-          padding:"10px 18px", fontSize:13, fontWeight:700, cursor:"pointer",
-          boxShadow:`0 4px 12px rgba(247,148,29,.3)` }}>
-          ＋ Tambah Data
-        </button>
+        <div style={{ display:"flex", gap:10, alignItems:"center" }}>
+          {/* Pemilihan Tahun */}
+          <div style={{ display:"flex", alignItems:"center", gap:8,
+            background:C.white, border:`1.5px solid ${C.gray300}`, borderRadius:9,
+            padding:"8px 14px", boxShadow:"0 1px 4px rgba(0,0,0,.06)" }}>
+            <span style={{ fontSize:15 }}>📅</span>
+            <span style={{ fontSize:12, fontWeight:600, color:C.gray700 }}>Tahun Data:</span>
+            <select value={tahun} onChange={e=>setTahun(e.target.value)}
+              style={{ border:"none", outline:"none", fontSize:13, fontWeight:700,
+                color:C.blueMid, background:"transparent", cursor:"pointer" }}>
+              {["2021","2022","2023","2024","2025","2026","2027","2028","2029","2030"].map(y=>(
+                <option key={y} value={y}>{y}</option>
+              ))}
+            </select>
+          </div>
+          <button onClick={()=>setFormMode("add")}
+            style={{ background:C.orange, color:C.white, border:"none", borderRadius:9,
+              padding:"10px 18px", fontSize:13, fontWeight:700, cursor:"pointer",
+              boxShadow:`0 4px 12px rgba(247,148,29,.3)` }}>
+            ＋ Tambah Data
+          </button>
+        </div>
       </div>
 
-      <div style={{ display:"flex", gap:10, marginBottom:16, flexWrap:"wrap", alignItems:"center" }}>
+      {/* Banner info tahun — beda tampilan untuk tahun lampau vs tahun aktif/mendatang */}
+      {parseInt(tahun) <= 2025 ? (
+        <div style={{ background:C.blueLight, border:`1px solid #C7D7F5`, borderRadius:9,
+          padding:"10px 16px", marginBottom:16, display:"flex", alignItems:"center", gap:10 }}>
+          <span style={{ fontSize:16 }}>ℹ️</span>
+          <span style={{ fontSize:13, color:C.blueMid, fontWeight:600 }}>
+            Menampilkan data kondisi jaringan irigasi Tahun <strong>{tahun}</strong> — Kabupaten Donggala
+          </span>
+        </div>
+      ) : (
+        <div style={{ background:"#FFF7ED", border:`1px solid #FED7AA`, borderRadius:9,
+          padding:"12px 16px", marginBottom:16 }}>
+          <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:6 }}>
+            <span style={{ fontSize:16 }}>🔄</span>
+            <span style={{ fontSize:13, color:"#C2410C", fontWeight:700 }}>
+              Tahun {tahun} — Mode Pemutakhiran Data
+            </span>
+          </div>
+          <p style={{ fontSize:12, color:"#92400E", margin:0, lineHeight:1.6 }}>
+            Data yang ditampilkan adalah data terakhir yang tersedia. Gunakan tombol <strong>＋ Tambah Data</strong> untuk menambahkan
+            daerah irigasi baru, atau tombol <strong>Edit</strong> pada setiap baris untuk memperbarui data kondisi sesuai
+            hasil survei/IKSI Tahun {tahun}.
+          </p>
+        </div>
+      )}
         <div style={{ position:"relative", flex:1, minWidth:200 }}>
           <span style={{ position:"absolute", left:12, top:"50%", transform:"translateY(-50%)",
             fontSize:15, color:C.gray500 }}>🔍</span>
@@ -453,13 +669,13 @@ function DataPage() {
             </thead>
             <tbody>
               {filtered.length===0 ? (
-                <tr><td colSpan={10} style={{ textAlign:"center", padding:40, color:C.gray500 }}>
+                <tr><td colSpan={9} style={{ textAlign:"center", padding:40, color:C.gray500 }}>
                   Tidak ada data ditemukan
                 </td></tr>
               ) : filtered.map((d,i)=>(
                 <tr key={d.id}
                   style={{ background:i%2===0?C.white:C.gray50, borderBottom:`1px solid ${C.gray100}`,
-                    cursor:"default", transition:"background .1s" }}
+                    transition:"background .1s" }}
                   onMouseEnter={e=>e.currentTarget.style.background=C.blueLight}
                   onMouseLeave={e=>e.currentTarget.style.background=i%2===0?C.white:C.gray50}>
                   <td style={{ padding:"11px 14px", fontWeight:600, color:C.blueMid }}>{d.kode}</td>
@@ -476,7 +692,8 @@ function DataPage() {
                         style={{ padding:"5px 10px", borderRadius:6, border:`1px solid ${C.blueMid}`,
                           background:C.blueLight, color:C.blueMid, cursor:"pointer",
                           fontSize:11, fontWeight:600 }}>Detail</button>
-                      <button style={{ padding:"5px 10px", borderRadius:6,
+                      <button onClick={()=>{ setEditTarget(d); setFormMode("edit"); }}
+                        style={{ padding:"5px 10px", borderRadius:6,
                           border:`1px solid ${C.orange}`, background:C.orangeLight,
                           color:C.orange, cursor:"pointer", fontSize:11, fontWeight:600 }}>Edit</button>
                     </div>
@@ -488,10 +705,11 @@ function DataPage() {
         </div>
         <div style={{ padding:"12px 16px", background:C.gray50, borderTop:`1px solid ${C.gray100}`,
           fontSize:12, color:C.gray500 }}>
-          Menampilkan {filtered.length} dari {daerahIrigasi.length} daerah irigasi — Kab. Donggala
+          Menampilkan {filtered.length} dari {data.length} daerah irigasi — Kab. Donggala
         </div>
       </div>
 
+      {/* Detail Modal */}
       {selected && (
         <div style={{ position:"fixed", inset:0, background:"rgba(0,0,0,.45)",
           display:"flex", alignItems:"center", justifyContent:"center", zIndex:999 }}
@@ -517,8 +735,8 @@ function DataPage() {
                 ["Nilai Kondisi Bendung", selected.nilaiBendung > 0 ? `${selected.nilaiBendung.toFixed(2)}%` : "Data tidak tersedia"],
                 ["Kondisi Bendung",      null, <Badge label={selected.kondisi} map={kondisiWarna}/>],
                 ["Status",               null, <Badge label={selected.status}  map={statusWarna}/>],
-                ["Sumber Data",          "e-PAKSI / IKSI 2023"],
-                ["Tahun Data",           "2023"],
+                ["Sumber Data",          "e-PAKSI / IKSI"],
+                ["Tahun Data",           tahun],
               ].map(([label,val,node])=>(
                 <div key={label} style={{ display:"flex", justifyContent:"space-between",
                   alignItems:"center", paddingBottom:10, marginBottom:10,
@@ -527,9 +745,25 @@ function DataPage() {
                   {node || <span style={{ fontSize:13, fontWeight:600, color:C.gray900 }}>{val}</span>}
                 </div>
               ))}
+              <div style={{ display:"flex", justifyContent:"flex-end", marginTop:8 }}>
+                <button onClick={()=>{ setSelected(null); setEditTarget(selected); setFormMode("edit"); }}
+                  style={{ padding:"9px 20px", borderRadius:8, border:"none",
+                    background:C.orange, color:C.white, cursor:"pointer",
+                    fontSize:13, fontWeight:700 }}>✏️ Edit Data Ini</button>
+              </div>
             </div>
           </div>
         </div>
+      )}
+
+      {/* Form Modal */}
+      {formMode && (
+        <FormModal
+          mode={formMode}
+          data={editTarget}
+          onSave={formMode==="add" ? handleAdd : handleEdit}
+          onClose={()=>{ setFormMode(null); setEditTarget(null); }}
+        />
       )}
     </div>
   );
@@ -559,7 +793,8 @@ export default function App() {
   const renderPage = () => {
     if (active==="dashboard") return <Dashboard />;
     if (active==="data")      return <DataPage />;
-    if (active==="peta")      return <PlaceholderPage icon="🗺️" title="Peta Sebaran Irigasi" desc="Visualisasi spasial jaringan irigasi Kab. Donggala" />;
+    if (active==="sungai")    return <PlaceholderPage icon="🌊" title="Data Sungai & Pantai"    desc="Basis data kondisi sungai dan garis pantai Kab. Donggala" />;
+    if (active==="peta")      return <PlaceholderPage icon="🗺️" title="Peta Sebaran Irigasi"    desc="Visualisasi spasial jaringan irigasi Kab. Donggala" />;
     if (active==="laporan")   return <PlaceholderPage icon="📋" title="Modul Laporan"         desc="Cetak dan ekspor laporan kondisi jaringan irigasi"  />;
     if (active==="pengguna")  return <PlaceholderPage icon="👥" title="Manajemen Pengguna"    desc="Kelola akun dan hak akses pengguna sistem"          />;
   };
