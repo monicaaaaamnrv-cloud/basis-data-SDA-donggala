@@ -635,6 +635,7 @@ function DataPage() {
           </p>
         </div>
       )}
+      <div style={{ display:"flex", flexWrap:"wrap", gap:10, alignItems:"center", marginBottom:16 }}>
         <div style={{ position:"relative", flex:1, minWidth:200 }}>
           <span style={{ position:"absolute", left:12, top:"50%", transform:"translateY(-50%)",
             fontSize:15, color:C.gray500 }}>🔍</span>
