@@ -21,39 +21,38 @@ const C = {
   yellow:     "#D97706",
 };
 
-// ── DATA 2025 (dari Excel Data_Teknis_DAK_2025.xlsx – Sheet 4A) ───────────────
 const daerahIrigasi = [
-  { id:1,  kode:"DI-001", nama:"D.I. Alindau",       kecamatan:"Sindue Tobata",    luasDI:117,   luasSawah:43,  bendungKondisi:"Rusak Sedang", bendungNilai:63.82,   salPrimerKondisi:"Rusak Sedang", salPrimerNilai:27.43,  salSekunderKondisi:null,          salSekunderNilai:0,     salTersierKondisi:"Rusak Berat",  salTersierNilai:41.19, kondisiJaringan:null,           nilaiJaringan:0,     status:"Aktif",             lastUpdate:"2025-01-01" },
-  { id:2,  kode:"DI-002", nama:"D.I. Ape",           kecamatan:"Sindue",           luasDI:185,   luasSawah:47,  bendungKondisi:"Rusak Berat",  bendungNilai:27.27,   salPrimerKondisi:"Rusak Berat",  salPrimerNilai:49.82,  salSekunderKondisi:"Rusak Berat", salSekunderNilai:42.04, salTersierKondisi:"Rusak Berat",  salTersierNilai:49.10, kondisiJaringan:"Rusak Berat",  nilaiJaringan:56.61, status:"Aktif",             lastUpdate:"2025-01-01" },
-  { id:3,  kode:"DI-003", nama:"D.I. Balukang",      kecamatan:"Sojol Utara",      luasDI:275,   luasSawah:194, bendungKondisi:"Rusak Sedang", bendungNilai:61.09,   salPrimerKondisi:"Rusak Ringan", salPrimerNilai:16.31,  salSekunderKondisi:"Rusak Ringan",salSekunderNilai:17.75,  salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:"Rusak Sedang", nilaiJaringan:66.84, status:"Aktif",             lastUpdate:"2025-01-01" },
-  { id:4,  kode:"DI-004", nama:"D.I. Jonooge",       kecamatan:"Banawa",           luasDI:337,   luasSawah:335, bendungKondisi:"Rusak Sedang", bendungNilai:64.09,   salPrimerKondisi:"Rusak Sedang", salPrimerNilai:40.00,  salSekunderKondisi:"Rusak Berat", salSekunderNilai:48.65, salTersierKondisi:"Rusak Berat",  salTersierNilai:46.95, kondisiJaringan:"Rusak Berat",  nilaiJaringan:57.62, status:"Aktif",             lastUpdate:"2025-01-01" },
-  { id:5,  kode:"DI-005", nama:"D.I. Labean",        kecamatan:"Balaesang Tanjung",luasDI:315,   luasSawah:225, bendungKondisi:"Rusak Ringan", bendungNilai:80.00,   salPrimerKondisi:"Rusak Sedang", salPrimerNilai:23.90,  salSekunderKondisi:"Rusak Sedang",salSekunderNilai:29.00,  salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:"Rusak Sedang", nilaiJaringan:61.19, status:"Aktif",             lastUpdate:"2025-01-01" },
-  { id:6,  kode:"DI-006", nama:"D.I. Lende",         kecamatan:"Rio Pakava",       luasDI:175,   luasSawah:23,  bendungKondisi:"Rusak Berat",  bendungNilai:30.73,   salPrimerKondisi:"Rusak Berat",  salPrimerNilai:49.00,  salSekunderKondisi:"Rusak Berat", salSekunderNilai:49.00, salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:"Rusak Berat",  nilaiJaringan:47.00, status:"Aktif",             lastUpdate:"2025-01-01" },
-  { id:7,  kode:"DI-007", nama:"D.I. Ogoamas",       kecamatan:"Balaesang",        luasDI:409,   luasSawah:254, bendungKondisi:"Rusak Sedang", bendungNilai:60.50,   salPrimerKondisi:"Baik",         salPrimerNilai:8.51,   salSekunderKondisi:"Rusak Sedang",salSekunderNilai:27.70,  salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:"Rusak Sedang", nilaiJaringan:63.96, status:"Aktif",             lastUpdate:"2025-01-01" },
-  { id:8,  kode:"DI-008", nama:"D.I. Pani'i",        kecamatan:"Sindue",           luasDI:300,   luasSawah:347, bendungKondisi:"Rusak Sedang", bendungNilai:67.18,   salPrimerKondisi:"Baik",         salPrimerNilai:2.92,   salSekunderKondisi:"Baik",        salSekunderNilai:4.80,   salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:"Rusak Sedang", nilaiJaringan:61.19, status:"Aktif",             lastUpdate:"2025-01-01" },
-  { id:9,  kode:"DI-009", nama:"D.I. Sibayu",        kecamatan:"Dampelas",         luasDI:497,   luasSawah:272, bendungKondisi:"Rusak Sedang", bendungNilai:79.64,   salPrimerKondisi:"Baik",         salPrimerNilai:1.00,   salSekunderKondisi:"Rusak Sedang",salSekunderNilai:35.25,  salTersierKondisi:"Rusak Berat",  salTersierNilai:43.81, kondisiJaringan:"Rusak Berat",  nilaiJaringan:59.33, status:"Aktif",             lastUpdate:"2025-01-01" },
-  { id:10, kode:"DI-010", nama:"D.I. Siboang",       kecamatan:"Balaesang",        luasDI:450,   luasSawah:623, bendungKondisi:"Rusak Sedang", bendungNilai:70.64,   salPrimerKondisi:"Rusak Ringan", salPrimerNilai:16.41,  salSekunderKondisi:"Rusak Sedang",salSekunderNilai:39.23,  salTersierKondisi:"Rusak Berat",  salTersierNilai:42.00, kondisiJaringan:"Rusak Sedang", nilaiJaringan:60.43, status:"Aktif",             lastUpdate:"2025-01-01" },
-  { id:11, kode:"DI-011", nama:"D.I. Sibualong",     kecamatan:"Sindue",           luasDI:300,   luasSawah:131, bendungKondisi:"Rusak Berat",  bendungNilai:38.09,   salPrimerKondisi:"Rusak Sedang", salPrimerNilai:38.00,  salSekunderKondisi:"Rusak Berat", salSekunderNilai:48.00, salTersierKondisi:"Rusak Berat",  salTersierNilai:41.67, kondisiJaringan:"Rusak Berat",  nilaiJaringan:50.90, status:"Aktif",             lastUpdate:"2025-01-01" },
-  { id:12, kode:"DI-012", nama:"D.I. Simou",         kecamatan:"Dampelas",         luasDI:959,   luasSawah:306, bendungKondisi:"Rusak Berat",  bendungNilai:47.50,   salPrimerKondisi:"Rusak Berat",  salPrimerNilai:42.83,  salSekunderKondisi:"Rusak Sedang",salSekunderNilai:23.22,  salTersierKondisi:"Rusak Berat",  salTersierNilai:43.12, kondisiJaringan:"Rusak Berat",  nilaiJaringan:58.03, status:"Aktif",             lastUpdate:"2025-01-01" },
-  { id:13, kode:"DI-013", nama:"D.I. Sioyong",       kecamatan:"Balaesang Tanjung",luasDI:606,   luasSawah:0,   bendungKondisi:null,           bendungNilai:0,       salPrimerKondisi:null,           salPrimerNilai:0,      salSekunderKondisi:null,          salSekunderNilai:0,     salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:null,           nilaiJaringan:0,     status:"Data Tidak Lengkap",lastUpdate:"2025-01-01" },
-  { id:14, kode:"DI-014", nama:"D.I. Siwalempu",     kecamatan:"Sindue Tobata",    luasDI:250,   luasSawah:171, bendungKondisi:null,           bendungNilai:0,       salPrimerKondisi:null,           salPrimerNilai:0,      salSekunderKondisi:null,          salSekunderNilai:0,     salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:null,           nilaiJaringan:0,     status:"Data Tidak Lengkap",lastUpdate:"2025-01-01" },
-  { id:15, kode:"DI-015", nama:"D.I. Siweli",        kecamatan:"Sojol",            luasDI:70,    luasSawah:74,  bendungKondisi:"Baik",         bendungNilai:90.50,   salPrimerKondisi:"Rusak Ringan", salPrimerNilai:16.26,  salSekunderKondisi:"Rusak Ringan",salSekunderNilai:16.30,  salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:"Rusak Berat",  nilaiJaringan:58.82, status:"Aktif",             lastUpdate:"2025-01-01" },
-  { id:16, kode:"DI-016", nama:"D.I. Sumari",        kecamatan:"Banawa Selatan",   luasDI:236,   luasSawah:116, bendungKondisi:"Baik",         bendungNilai:90.50,   salPrimerKondisi:"Rusak Ringan", salPrimerNilai:16.58,  salSekunderKondisi:"Rusak Sedang",salSekunderNilai:23.90,  salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:"Rusak Sedang", nilaiJaringan:63.67, status:"Aktif",             lastUpdate:"2025-01-01" },
-  { id:17, kode:"DI-017", nama:"D.I. Tamarenja",     kecamatan:"Banawa Tengah",    luasDI:102,   luasSawah:20,  bendungKondisi:"Baik",         bendungNilai:90.50,   salPrimerKondisi:"Rusak Sedang", salPrimerNilai:23.88,  salSekunderKondisi:"Rusak Ringan",salSekunderNilai:16.30,  salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:"Rusak Sedang", nilaiJaringan:61.18, status:"Aktif",             lastUpdate:"2025-01-01" },
-  { id:18, kode:"DI-018", nama:"D.I. Tambu",         kecamatan:"Balaesang",        luasDI:200,   luasSawah:176, bendungKondisi:"Rusak Berat",  bendungNilai:47.64,   salPrimerKondisi:"Rusak Sedang", salPrimerNilai:33.47,  salSekunderKondisi:null,          salSekunderNilai:0,     salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:"Rusak Berat",  nilaiJaringan:41.57, status:"Aktif",             lastUpdate:"2025-01-01" },
-  { id:19, kode:"DI-019", nama:"D.I. Tanamea Kanan", kecamatan:"Sindue Rombu",     luasDI:280,   luasSawah:130, bendungKondisi:"Rusak Sedang", bendungNilai:62.91,   salPrimerKondisi:"Rusak Berat",  salPrimerNilai:45.68,  salSekunderKondisi:"Rusak Sedang",salSekunderNilai:36.15,  salTersierKondisi:"Rusak Berat",  salTersierNilai:43.02, kondisiJaringan:"Rusak Sedang", nilaiJaringan:64.53, status:"Aktif",             lastUpdate:"2025-01-01" },
-  { id:20, kode:"DI-020", nama:"D.I. Tanamea Kiri",  kecamatan:"Sindue Rombu",     luasDI:300,   luasSawah:93,  bendungKondisi:"Rusak Sedang", bendungNilai:65.45,   salPrimerKondisi:"Rusak Sedang", salPrimerNilai:33.49,  salSekunderKondisi:"Rusak Sedang",salSekunderNilai:33.02,  salTersierKondisi:"Rusak Berat",  salTersierNilai:43.94, kondisiJaringan:"Rusak Sedang", nilaiJaringan:61.44, status:"Aktif",             lastUpdate:"2025-01-01" },
-  { id:21, kode:"DI-021", nama:"D.I. Tompe",         kecamatan:"Sindue",           luasDI:575,   luasSawah:207, bendungKondisi:"Rusak Berat",  bendungNilai:50.18,   salPrimerKondisi:"Rusak Berat",  salPrimerNilai:44.59,  salSekunderKondisi:"Rusak Berat", salSekunderNilai:47.51, salTersierKondisi:"Rusak Berat",  salTersierNilai:48.27, kondisiJaringan:"Rusak Berat",  nilaiJaringan:59.05, status:"Aktif",             lastUpdate:"2025-01-01" },
-  { id:22, kode:"DI-022", nama:"D.I. Tonggolobibi",  kecamatan:"Dampelas",         luasDI:574,   luasSawah:380, bendungKondisi:"Baik",         bendungNilai:90.50,   salPrimerKondisi:"Rusak Berat",  salPrimerNilai:43.32,  salSekunderKondisi:"Rusak Sedang",salSekunderNilai:36.10,  salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:"Rusak Berat",  nilaiJaringan:57.20, status:"Aktif",             lastUpdate:"2025-01-01" },
-  { id:23, kode:"DI-023", nama:"D.I. Watatu",        kecamatan:"Balaesang",        luasDI:300,   luasSawah:350, bendungKondisi:"Rusak Sedang", bendungNilai:73.64,   salPrimerKondisi:"Rusak Berat",  salPrimerNilai:44.07,  salSekunderKondisi:"Rusak Sedang",salSekunderNilai:30.00,  salTersierKondisi:"Rusak Berat",  salTersierNilai:43.33, kondisiJaringan:"Rusak Sedang", nilaiJaringan:71.54, status:"Aktif",             lastUpdate:"2025-01-01" },
-  { id:24, kode:"DI-024", nama:"D.I. Wombo",         kecamatan:"Tanantovea",       luasDI:90,    luasSawah:13,  bendungKondisi:"Rusak Berat",  bendungNilai:49.50,   salPrimerKondisi:"Rusak Sedang", salPrimerNilai:23.98,  salSekunderKondisi:"Rusak Ringan",salSekunderNilai:16.28,  salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:"Rusak Berat",  nilaiJaringan:58.30, status:"Aktif",             lastUpdate:"2025-01-01" },
-  { id:25, kode:"DI-025", nama:"D.I. Nupabomba",     kecamatan:"Tanantovea",       luasDI:150,   luasSawah:40,  bendungKondisi:"Rusak Sedang", bendungNilai:61.31,   salPrimerKondisi:"Rusak Sedang", salPrimerNilai:35.10,  salSekunderKondisi:null,          salSekunderNilai:0,     salTersierKondisi:"Rusak Sedang", salTersierNilai:23.67, kondisiJaringan:"Rusak Sedang", nilaiJaringan:60.66, status:"Aktif",             lastUpdate:"2025-01-01" },
-  { id:26, kode:"DI-026", nama:"D.I. Rerang",        kecamatan:"Sindue Tobata",    luasDI:205,   luasSawah:157, bendungKondisi:"Rusak Sedang", bendungNilai:63.50,   salPrimerKondisi:"Rusak Berat",  salPrimerNilai:43.12,  salSekunderKondisi:"Rusak Berat", salSekunderNilai:45.75, salTersierKondisi:"Rusak Berat",  salTersierNilai:44.77, kondisiJaringan:"Rusak Sedang", nilaiJaringan:62.56, status:"Aktif",             lastUpdate:"2025-01-01" },
-  { id:27, kode:"DI-027", nama:"D.I. Sinjaliang",    kecamatan:"Rio Pakava",       luasDI:107,   luasSawah:0,   bendungKondisi:null,           bendungNilai:0,       salPrimerKondisi:null,           salPrimerNilai:0,      salSekunderKondisi:null,          salSekunderNilai:0,     salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:null,           nilaiJaringan:0,     status:"Data Tidak Lengkap",lastUpdate:"2025-01-01" },
-  { id:28, kode:"DI-028", nama:"D.I. Tambu Tovia",   kecamatan:"Balaesang",        luasDI:116,   luasSawah:26,  bendungKondisi:"Rusak Sedang", bendungNilai:69.46,   salPrimerKondisi:"Rusak Sedang", salPrimerNilai:34.76,  salSekunderKondisi:"Rusak Sedang",salSekunderNilai:34.60,  salTersierKondisi:"Rusak Sedang", salTersierNilai:23.89, kondisiJaringan:"Rusak Berat",  nilaiJaringan:58.62, status:"Aktif",             lastUpdate:"2025-01-01" },
-  { id:29, kode:"DI-029", nama:"D.I. Tandayo",       kecamatan:"Balaesang Tanjung",luasDI:116,   luasSawah:328, bendungKondisi:"Rusak Sedang", bendungNilai:68.91,   salPrimerKondisi:"Rusak Berat",  salPrimerNilai:44.30,  salSekunderKondisi:"Rusak Berat", salSekunderNilai:44.30, salTersierKondisi:"Rusak Berat",  salTersierNilai:45.13, kondisiJaringan:"Rusak Berat",  nilaiJaringan:51.32, status:"Aktif",             lastUpdate:"2025-01-01" },
-  { id:30, kode:"DI-030", nama:"D.I. Tinauka",       kecamatan:"Rio Pakava",       luasDI:204.6, luasSawah:0,   bendungKondisi:null,           bendungNilai:0,       salPrimerKondisi:null,           salPrimerNilai:0,      salSekunderKondisi:null,          salSekunderNilai:0,     salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:null,           nilaiJaringan:0,     status:"Data Tidak Lengkap",lastUpdate:"2025-01-01" },
-  { id:31, kode:"DI-031", nama:"D.I. Wombo Mpanau",  kecamatan:"Tanantovea",       luasDI:90,    luasSawah:14,  bendungKondisi:"Rusak Berat",  bendungNilai:49.50,   salPrimerKondisi:"Rusak Berat",  salPrimerNilai:44.20,  salSekunderKondisi:"Rusak Sedang",salSekunderNilai:33.20,  salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:"Rusak Berat",  nilaiJaringan:48.60, status:"Aktif",             lastUpdate:"2025-01-01" },
+  { id:1,  kode:"DI-001", nama:"D.I. Alindau",       kecamatan:"Sindue Tobata",    luasDI:117,   luasSawah:43,  bendungKondisi:"Rusak Sedang", bendungNilai:63.82, salPrimerKondisi:"Rusak Sedang", salPrimerNilai:27.43, salSekunderKondisi:null,          salSekunderNilai:0,    salTersierKondisi:"Rusak Berat",  salTersierNilai:41.19, kondisiJaringan:null,           nilaiJaringan:0,     status:"Aktif",             lastUpdate:"2023-02-01" },
+  { id:2,  kode:"DI-002", nama:"D.I. Ape",           kecamatan:"Sindue",           luasDI:185,   luasSawah:47,  bendungKondisi:"Rusak Berat",  bendungNilai:27.27, salPrimerKondisi:"Rusak Berat",  salPrimerNilai:49.82, salSekunderKondisi:"Rusak Berat", salSekunderNilai:42.04, salTersierKondisi:"Rusak Berat",  salTersierNilai:49.10, kondisiJaringan:"Rusak Berat",  nilaiJaringan:56.61, status:"Aktif",             lastUpdate:"2023-02-01" },
+  { id:3,  kode:"DI-003", nama:"D.I. Balukang",      kecamatan:"Sojol Utara",      luasDI:275,   luasSawah:194, bendungKondisi:"Rusak Sedang", bendungNilai:61.09, salPrimerKondisi:"Rusak Ringan", salPrimerNilai:16.31, salSekunderKondisi:"Rusak Ringan",salSekunderNilai:17.75, salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:"Rusak Sedang", nilaiJaringan:66.84, status:"Aktif",             lastUpdate:"2023-02-01" },
+  { id:4,  kode:"DI-004", nama:"D.I. Jonooge",       kecamatan:"Banawa",           luasDI:337,   luasSawah:335, bendungKondisi:"Rusak Sedang", bendungNilai:64.09, salPrimerKondisi:"Rusak Sedang", salPrimerNilai:40.00, salSekunderKondisi:"Rusak Berat", salSekunderNilai:48.65, salTersierKondisi:"Rusak Berat",  salTersierNilai:46.95, kondisiJaringan:"Rusak Berat",  nilaiJaringan:57.62, status:"Aktif",             lastUpdate:"2023-02-01" },
+  { id:5,  kode:"DI-005", nama:"D.I. Labean",        kecamatan:"Balaesang Tanjung",luasDI:315,   luasSawah:225, bendungKondisi:"Rusak Ringan", bendungNilai:80.00, salPrimerKondisi:"Rusak Sedang", salPrimerNilai:23.90, salSekunderKondisi:"Rusak Sedang",salSekunderNilai:29.00, salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:"Rusak Sedang", nilaiJaringan:61.19, status:"Aktif",             lastUpdate:"2023-02-01" },
+  { id:6,  kode:"DI-006", nama:"D.I. Lende",         kecamatan:"Rio Pakava",       luasDI:175,   luasSawah:23,  bendungKondisi:"Rusak Berat",  bendungNilai:30.73, salPrimerKondisi:"Rusak Berat",  salPrimerNilai:49.00, salSekunderKondisi:"Rusak Berat", salSekunderNilai:49.00, salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:"Rusak Berat",  nilaiJaringan:47.00, status:"Aktif",             lastUpdate:"2023-02-01" },
+  { id:7,  kode:"DI-007", nama:"D.I. Ogoamas",       kecamatan:"Balaesang",        luasDI:409,   luasSawah:254, bendungKondisi:"Rusak Sedang", bendungNilai:60.50, salPrimerKondisi:"Baik",         salPrimerNilai:8.51,  salSekunderKondisi:"Rusak Sedang",salSekunderNilai:27.70, salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:"Rusak Sedang", nilaiJaringan:63.96, status:"Aktif",             lastUpdate:"2023-02-01" },
+  { id:8,  kode:"DI-008", nama:"D.I. Pani'i",        kecamatan:"Sindue",           luasDI:300,   luasSawah:347, bendungKondisi:"Rusak Sedang", bendungNilai:67.18, salPrimerKondisi:"Baik",         salPrimerNilai:2.92,  salSekunderKondisi:"Baik",        salSekunderNilai:4.80,  salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:"Rusak Sedang", nilaiJaringan:61.19, status:"Aktif",             lastUpdate:"2023-02-01" },
+  { id:9,  kode:"DI-009", nama:"D.I. Sibayu",        kecamatan:"Dampelas",         luasDI:497,   luasSawah:272, bendungKondisi:"Rusak Sedang", bendungNilai:79.64, salPrimerKondisi:"Baik",         salPrimerNilai:1.00,  salSekunderKondisi:"Rusak Sedang",salSekunderNilai:35.25, salTersierKondisi:"Rusak Berat",  salTersierNilai:43.81, kondisiJaringan:"Rusak Berat",  nilaiJaringan:59.33, status:"Aktif",             lastUpdate:"2023-02-01" },
+  { id:10, kode:"DI-010", nama:"D.I. Siboang",       kecamatan:"Balaesang",        luasDI:450,   luasSawah:623, bendungKondisi:"Rusak Sedang", bendungNilai:70.64, salPrimerKondisi:"Rusak Ringan", salPrimerNilai:16.41, salSekunderKondisi:"Rusak Sedang",salSekunderNilai:39.23, salTersierKondisi:"Rusak Berat",  salTersierNilai:42.00, kondisiJaringan:"Rusak Sedang", nilaiJaringan:60.43, status:"Aktif",             lastUpdate:"2023-02-01" },
+  { id:11, kode:"DI-011", nama:"D.I. Sibualong",     kecamatan:"Sindue",           luasDI:300,   luasSawah:131, bendungKondisi:"Rusak Berat",  bendungNilai:38.09, salPrimerKondisi:"Rusak Sedang", salPrimerNilai:38.00, salSekunderKondisi:"Rusak Berat", salSekunderNilai:48.00, salTersierKondisi:"Rusak Berat",  salTersierNilai:41.67, kondisiJaringan:"Rusak Berat",  nilaiJaringan:50.90, status:"Aktif",             lastUpdate:"2023-02-01" },
+  { id:12, kode:"DI-012", nama:"D.I. Simou",         kecamatan:"Dampelas",         luasDI:959,   luasSawah:306, bendungKondisi:"Rusak Berat",  bendungNilai:47.50, salPrimerKondisi:"Rusak Berat",  salPrimerNilai:42.83, salSekunderKondisi:"Rusak Sedang",salSekunderNilai:23.22, salTersierKondisi:"Rusak Berat",  salTersierNilai:43.12, kondisiJaringan:"Rusak Berat",  nilaiJaringan:58.03, status:"Aktif",             lastUpdate:"2023-02-01" },
+  { id:13, kode:"DI-013", nama:"D.I. Sioyong",       kecamatan:"Balaesang Tanjung",luasDI:606,   luasSawah:0,   bendungKondisi:null,           bendungNilai:0,     salPrimerKondisi:null,           salPrimerNilai:0,     salSekunderKondisi:null,          salSekunderNilai:0,    salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:null,           nilaiJaringan:0,     status:"Data Belum Lengkap",lastUpdate:"2023-02-01" },
+  { id:14, kode:"DI-014", nama:"D.I. Siwalempu",     kecamatan:"Sindue Tobata",    luasDI:250,   luasSawah:171, bendungKondisi:null,           bendungNilai:0,     salPrimerKondisi:null,           salPrimerNilai:0,     salSekunderKondisi:null,          salSekunderNilai:0,    salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:null,           nilaiJaringan:0,     status:"Data Belum Lengkap",lastUpdate:"2023-02-01" },
+  { id:15, kode:"DI-015", nama:"D.I. Siweli",        kecamatan:"Sojol",            luasDI:70,    luasSawah:74,  bendungKondisi:"Baik",         bendungNilai:90.50, salPrimerKondisi:"Rusak Ringan", salPrimerNilai:16.26, salSekunderKondisi:"Rusak Ringan",salSekunderNilai:16.30, salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:"Rusak Berat",  nilaiJaringan:58.82, status:"Aktif",             lastUpdate:"2023-02-01" },
+  { id:16, kode:"DI-016", nama:"D.I. Sumari",        kecamatan:"Banawa Selatan",   luasDI:236,   luasSawah:116, bendungKondisi:"Baik",         bendungNilai:90.50, salPrimerKondisi:"Rusak Ringan", salPrimerNilai:16.58, salSekunderKondisi:"Rusak Sedang",salSekunderNilai:23.90, salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:"Rusak Sedang", nilaiJaringan:63.67, status:"Aktif",             lastUpdate:"2023-02-01" },
+  { id:17, kode:"DI-017", nama:"D.I. Tamarenja",     kecamatan:"Banawa Tengah",    luasDI:102,   luasSawah:20,  bendungKondisi:"Baik",         bendungNilai:90.50, salPrimerKondisi:"Rusak Sedang", salPrimerNilai:23.88, salSekunderKondisi:"Rusak Ringan",salSekunderNilai:16.30, salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:"Rusak Sedang", nilaiJaringan:61.18, status:"Aktif",             lastUpdate:"2023-02-01" },
+  { id:18, kode:"DI-018", nama:"D.I. Tambu",         kecamatan:"Balaesang",        luasDI:200,   luasSawah:176, bendungKondisi:"Rusak Berat",  bendungNilai:47.64, salPrimerKondisi:"Rusak Sedang", salPrimerNilai:33.47, salSekunderKondisi:null,          salSekunderNilai:0,    salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:"Rusak Berat",  nilaiJaringan:41.57, status:"Aktif",             lastUpdate:"2023-02-01" },
+  { id:19, kode:"DI-019", nama:"D.I. Tanamea Kanan", kecamatan:"Sindue Rombu",     luasDI:280,   luasSawah:130, bendungKondisi:"Rusak Sedang", bendungNilai:62.91, salPrimerKondisi:"Rusak Berat",  salPrimerNilai:45.68, salSekunderKondisi:"Rusak Sedang",salSekunderNilai:36.15, salTersierKondisi:"Rusak Berat",  salTersierNilai:43.02, kondisiJaringan:"Rusak Sedang", nilaiJaringan:64.53, status:"Aktif",             lastUpdate:"2023-02-01" },
+  { id:20, kode:"DI-020", nama:"D.I. Tanamea Kiri",  kecamatan:"Sindue Rombu",     luasDI:300,   luasSawah:93,  bendungKondisi:"Rusak Sedang", bendungNilai:65.45, salPrimerKondisi:"Rusak Sedang", salPrimerNilai:33.49, salSekunderKondisi:"Rusak Sedang",salSekunderNilai:33.02, salTersierKondisi:"Rusak Berat",  salTersierNilai:43.94, kondisiJaringan:"Rusak Sedang", nilaiJaringan:61.44, status:"Aktif",             lastUpdate:"2023-02-01" },
+  { id:21, kode:"DI-021", nama:"D.I. Tompe",         kecamatan:"Sindue",           luasDI:575,   luasSawah:207, bendungKondisi:"Rusak Berat",  bendungNilai:50.18, salPrimerKondisi:"Rusak Berat",  salPrimerNilai:44.59, salSekunderKondisi:"Rusak Berat", salSekunderNilai:47.51, salTersierKondisi:"Rusak Berat",  salTersierNilai:48.27, kondisiJaringan:"Rusak Berat",  nilaiJaringan:59.05, status:"Aktif",             lastUpdate:"2023-02-01" },
+  { id:22, kode:"DI-022", nama:"D.I. Tonggolobibi",  kecamatan:"Dampelas",         luasDI:574,   luasSawah:380, bendungKondisi:"Baik",         bendungNilai:90.50, salPrimerKondisi:"Rusak Berat",  salPrimerNilai:43.32, salSekunderKondisi:"Rusak Sedang",salSekunderNilai:36.10, salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:"Rusak Berat",  nilaiJaringan:57.20, status:"Aktif",             lastUpdate:"2023-02-01" },
+  { id:23, kode:"DI-023", nama:"D.I. Watatu",        kecamatan:"Balaesang",        luasDI:300,   luasSawah:350, bendungKondisi:"Rusak Sedang", bendungNilai:73.64, salPrimerKondisi:"Rusak Berat",  salPrimerNilai:44.07, salSekunderKondisi:"Rusak Sedang",salSekunderNilai:30.00, salTersierKondisi:"Rusak Berat",  salTersierNilai:43.33, kondisiJaringan:"Rusak Sedang", nilaiJaringan:71.54, status:"Aktif",             lastUpdate:"2023-02-01" },
+  { id:24, kode:"DI-024", nama:"D.I. Wombo",         kecamatan:"Tanantovea",       luasDI:90,    luasSawah:13,  bendungKondisi:"Rusak Berat",  bendungNilai:49.50, salPrimerKondisi:"Rusak Sedang", salPrimerNilai:23.98, salSekunderKondisi:"Rusak Ringan",salSekunderNilai:16.28, salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:"Rusak Berat",  nilaiJaringan:58.30, status:"Aktif",             lastUpdate:"2023-02-01" },
+  { id:25, kode:"DI-025", nama:"D.I. Nupabomba",     kecamatan:"Tanantovea",       luasDI:150,   luasSawah:40,  bendungKondisi:"Rusak Sedang", bendungNilai:61.31, salPrimerKondisi:"Rusak Sedang", salPrimerNilai:35.10, salSekunderKondisi:null,          salSekunderNilai:0,    salTersierKondisi:"Rusak Sedang", salTersierNilai:23.67, kondisiJaringan:"Rusak Sedang", nilaiJaringan:60.66, status:"Aktif",             lastUpdate:"2023-02-01" },
+  { id:26, kode:"DI-026", nama:"D.I. Rerang",        kecamatan:"Sindue Tobata",    luasDI:205,   luasSawah:157, bendungKondisi:"Rusak Sedang", bendungNilai:63.50, salPrimerKondisi:"Rusak Berat",  salPrimerNilai:43.12, salSekunderKondisi:"Rusak Berat", salSekunderNilai:45.75, salTersierKondisi:"Rusak Berat",  salTersierNilai:44.77, kondisiJaringan:"Rusak Sedang", nilaiJaringan:62.56, status:"Aktif",             lastUpdate:"2023-02-01" },
+  { id:27, kode:"DI-027", nama:"D.I. Sinjaliang",    kecamatan:"Rio Pakava",       luasDI:107,   luasSawah:0,   bendungKondisi:null,           bendungNilai:0,     salPrimerKondisi:null,           salPrimerNilai:0,     salSekunderKondisi:null,          salSekunderNilai:0,    salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:null,           nilaiJaringan:0,     status:"Data Belum Lengkap",lastUpdate:"2023-02-01" },
+  { id:28, kode:"DI-028", nama:"D.I. Tambu Tovia",   kecamatan:"Balaesang",        luasDI:116,   luasSawah:26,  bendungKondisi:"Rusak Sedang", bendungNilai:69.46, salPrimerKondisi:"Rusak Sedang", salPrimerNilai:34.76, salSekunderKondisi:"Rusak Sedang",salSekunderNilai:34.60, salTersierKondisi:"Rusak Sedang", salTersierNilai:23.89, kondisiJaringan:"Rusak Berat",  nilaiJaringan:58.62, status:"Aktif",             lastUpdate:"2023-02-01" },
+  { id:29, kode:"DI-029", nama:"D.I. Tandayo",       kecamatan:"Balaesang Tanjung",luasDI:116,   luasSawah:328, bendungKondisi:"Rusak Sedang", bendungNilai:68.91, salPrimerKondisi:"Rusak Berat",  salPrimerNilai:44.30, salSekunderKondisi:"Rusak Berat", salSekunderNilai:44.30, salTersierKondisi:"Rusak Berat",  salTersierNilai:45.13, kondisiJaringan:"Rusak Berat",  nilaiJaringan:51.32, status:"Aktif",             lastUpdate:"2023-02-01" },
+  { id:30, kode:"DI-030", nama:"D.I. Tinauka",       kecamatan:"Rio Pakava",       luasDI:204.6, luasSawah:0,   bendungKondisi:null,           bendungNilai:0,     salPrimerKondisi:null,           salPrimerNilai:0,     salSekunderKondisi:null,          salSekunderNilai:0,    salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:null,           nilaiJaringan:0,     status:"Data Belum Lengkap",lastUpdate:"2023-02-01" },
+  { id:31, kode:"DI-031", nama:"D.I. Wombo Mpanau",  kecamatan:"Tanantovea",       luasDI:90,    luasSawah:14,  bendungKondisi:"Rusak Berat",  bendungNilai:49.50, salPrimerKondisi:"Rusak Berat",  salPrimerNilai:44.20, salSekunderKondisi:"Rusak Sedang",salSekunderNilai:33.20, salTersierKondisi:null,           salTersierNilai:0,     kondisiJaringan:"Rusak Berat",  nilaiJaringan:48.60, status:"Aktif",             lastUpdate:"2023-02-01" },
 ];
 
 const kondisiWarna = {
@@ -65,6 +64,7 @@ const kondisiWarna = {
 };
 const statusWarna = {
   "Aktif":              { bg:"#DBEAFE", tx:"#1E40AF" },
+  "Data Belum Lengkap": { bg:"#FEF3C7", tx:"#92400E" },
   "Data Tidak Lengkap": { bg:"#FEF3C7", tx:"#92400E" },
   "Tidak Aktif":        { bg:"#F3F4F6", tx:"#6B7280" },
 };
@@ -81,6 +81,53 @@ function Badge({ label, map }) {
       {label}
     </span>
   );
+}
+
+// ── HELPER KALKULASI ────────────────────────────────────────────
+// Kondisi bendung berdasarkan tingkat kelayakan bangunan (%)
+function getKondisiBendung(nilai) {
+  if (!nilai || nilai <= 0) return null;
+  if (nilai > 90) return "Baik";
+  if (nilai >= 80) return "Rusak Ringan";
+  if (nilai >= 60) return "Rusak Sedang";
+  return "Rusak Berat";
+}
+
+// Kondisi saluran berdasarkan tingkat kerusakan (%)
+function getKondisiSaluran(nilai) {
+  if (nilai === null || nilai === undefined || nilai <= 0) return null;
+  if (nilai < 10) return "Baik";
+  if (nilai <= 20) return "Rusak Ringan";
+  if (nilai <= 40) return "Rusak Sedang";
+  return "Rusak Berat";
+}
+
+// Rata-rata tertimbang: Bendung 40%, Primer 30%, Sekunder 30%
+// Bendung: nilai kelayakan (tinggi = baik)
+// Primer/Sekunder: nilai kerusakan → dikonversi ke kelayakan (100 - kerusakan)
+function hitungRataRata(d) {
+  const B = d.bendungNilai > 0 ? d.bendungNilai : null;
+  const P = d.salPrimerNilai > 0 ? (100 - d.salPrimerNilai) : null;
+  const S = d.salSekunderNilai > 0 ? (100 - d.salSekunderNilai) : null;
+
+  const components = [
+    { nilai: B, bobot: 40 },
+    { nilai: P, bobot: 30 },
+    { nilai: S, bobot: 30 },
+  ].filter(c => c.nilai !== null);
+
+  if (components.length === 0) return { nilai: 0, kondisi: null };
+
+  const totalBobot = components.reduce((sum, c) => sum + c.bobot, 0);
+  const totalNilai = components.reduce((sum, c) => sum + c.nilai * c.bobot, 0);
+  const nilai = totalNilai / totalBobot;
+
+  const kondisi = nilai > 90 ? "Baik"
+               : nilai >= 80 ? "Rusak Ringan"
+               : nilai >= 60 ? "Rusak Sedang"
+               : "Rusak Berat";
+
+  return { nilai, kondisi };
 }
 
 function StatCard({ icon, label, value, sub, color }) {
@@ -245,7 +292,7 @@ function Sidebar({ active, setActive, user, onLogout, collapsed, setCollapsed })
         {collapsed ? (
           <img src={LOGO_PUPR} alt="PUPR"
             style={{ width:36, height:36, objectFit:"contain" }}
-            onError={e=>{ e.target.style.display="none"; }}
+            onError={e=>{ e.target.style.display="none"; e.target.nextSibling.style.display="block"; }}
           />
         ) : (
           <div style={{ display:"flex", alignItems:"center", gap:10 }}>
@@ -319,21 +366,17 @@ function Sidebar({ active, setActive, user, onLogout, collapsed, setCollapsed })
 // ── DASHBOARD ────────────────────────────────────────────────────
 function Dashboard() {
   const total = daerahIrigasi.length;
-  const baik  = daerahIrigasi.filter(d=>d.kondisiJaringan==="Baik").length;
-  const rusak = daerahIrigasi.filter(d=>["Rusak Ringan","Rusak Sedang","Rusak Berat"].includes(d.kondisiJaringan)).length;
+  const baik  = daerahIrigasi.filter(d=>hitungRataRata(d).kondisi==="Baik").length;
+  const rusak = daerahIrigasi.filter(d=>["Rusak Ringan","Rusak Sedang","Rusak Berat"].includes(hitungRataRata(d).kondisi)).length;
   const luas  = daerahIrigasi.reduce((a,d)=>a+d.luasDI,0);
 
   return (
     <div>
       <div style={{ marginBottom:24 }}>
-        <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:4 }}>
-          <h2 style={{ fontSize:22, fontWeight:800, color:C.gray900, margin:0 }}>Dashboard</h2>
-          <span style={{ background:"linear-gradient(90deg,#003087,#0047B3)", color:"#fff",
-            fontSize:11, fontWeight:700, padding:"3px 10px", borderRadius:20,
-            letterSpacing:0.5 }}>DATA 2025</span>
-        </div>
+        <h2 style={{ fontSize:22, fontWeight:800, color:C.gray900, margin:0 }}>Dashboard</h2>
         <p style={{ color:C.gray500, fontSize:14, marginTop:4 }}>
-          Ringkasan kondisi jaringan irigasi — Kab. Donggala · Pemutakhiran Data Teknis DAK 2025
+          Ringkasan kondisi jaringan irigasi — Kab. Donggala &nbsp;|&nbsp;
+          <span style={{ color:C.blueMid, fontWeight:600 }}>Sumber: Data Kondisi Fisik Tahun 2025</span>
         </p>
       </div>
 
@@ -344,6 +387,47 @@ function Dashboard() {
         <StatCard icon="📐" label="Total Luas (Ha)"       value={luas.toLocaleString()}    color={C.orange}  />
       </div>
 
+      {/* Keterangan Kriteria Kondisi */}
+      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:16, marginBottom:20 }}>
+        <div style={{ background:"#EFF6FF", border:"1px solid #BFDBFE", borderRadius:12, padding:"14px 18px" }}>
+          <div style={{ fontSize:12, fontWeight:700, color:C.blueDark, marginBottom:10, textTransform:"uppercase", letterSpacing:0.7 }}>
+            🏛️ Kriteria Kondisi Bendung (Tingkat Kelayakan)
+          </div>
+          {[
+            { label:"Baik",        range:"> 90%",   color:kondisiWarna["Baik"] },
+            { label:"Rusak Ringan",range:"80 – 90%",color:kondisiWarna["Rusak Ringan"] },
+            { label:"Rusak Sedang",range:"60 – 80%",color:kondisiWarna["Rusak Sedang"] },
+            { label:"Rusak Berat", range:"< 60%",   color:kondisiWarna["Rusak Berat"] },
+          ].map(k=>(
+            <div key={k.label} style={{ display:"flex", alignItems:"center", gap:8, marginBottom:6 }}>
+              <span style={{ width:10, height:10, borderRadius:"50%", background:k.color.dot, flexShrink:0 }}/>
+              <span style={{ fontSize:12, color:C.gray700, fontWeight:600, minWidth:90 }}>{k.label}</span>
+              <span style={{ fontSize:12, color:C.gray500 }}>: {k.range}</span>
+            </div>
+          ))}
+        </div>
+        <div style={{ background:"#FFF7ED", border:"1px solid #FED7AA", borderRadius:12, padding:"14px 18px" }}>
+          <div style={{ fontSize:12, fontWeight:700, color:"#92400E", marginBottom:10, textTransform:"uppercase", letterSpacing:0.7 }}>
+            🌊 Kriteria Kondisi Saluran (Tingkat Kerusakan)
+          </div>
+          {[
+            { label:"Baik",        range:"< 10%",   color:kondisiWarna["Baik"] },
+            { label:"Rusak Ringan",range:"10 – 20%",color:kondisiWarna["Rusak Ringan"] },
+            { label:"Rusak Sedang",range:"21 – 40%",color:kondisiWarna["Rusak Sedang"] },
+            { label:"Rusak Berat", range:"> 40%",   color:kondisiWarna["Rusak Berat"] },
+          ].map(k=>(
+            <div key={k.label} style={{ display:"flex", alignItems:"center", gap:8, marginBottom:6 }}>
+              <span style={{ width:10, height:10, borderRadius:"50%", background:k.color.dot, flexShrink:0 }}/>
+              <span style={{ fontSize:12, color:C.gray700, fontWeight:600, minWidth:90 }}>{k.label}</span>
+              <span style={{ fontSize:12, color:C.gray500 }}>: {k.range}</span>
+            </div>
+          ))}
+          <div style={{ marginTop:8, fontSize:11, color:"#92400E", background:"#FEF3E2", borderRadius:6, padding:"6px 8px" }}>
+            ⚖️ Bobot Rata-rata Tertimbang: Bendung 40% · Primer 30% · Sekunder 30%
+          </div>
+        </div>
+      </div>
+
       <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:16 }}>
         <div style={{ background:C.white, borderRadius:14, padding:22,
           boxShadow:"0 2px 12px rgba(0,48,135,.08)" }}>
@@ -351,7 +435,7 @@ function Dashboard() {
             Distribusi Kondisi Jaringan
           </h3>
           {["Baik","Rusak Ringan","Rusak Sedang","Rusak Berat","Belum Didata"].map(k=>{
-            const cnt = daerahIrigasi.filter(d=>(d.kondisiJaringan||"Belum Didata")===k).length;
+            const cnt = daerahIrigasi.filter(d=>(hitungRataRata(d).kondisi||"Belum Didata")===k).length;
             const pct = Math.round(cnt/total*100);
             const w   = kondisiWarna[k];
             return (
@@ -368,70 +452,28 @@ function Dashboard() {
           })}
         </div>
 
-        {/* Pemutakhiran Data Terbaru – 2025 */}
         <div style={{ background:C.white, borderRadius:14, padding:22,
           boxShadow:"0 2px 12px rgba(0,48,135,.08)" }}>
-          <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:18 }}>
-            <h3 style={{ fontSize:15, fontWeight:700, color:C.gray900, margin:0 }}>
-              Pemutakhiran Data Terbaru
-            </h3>
-            <span style={{ background:C.blueLight, color:C.blueMid, fontSize:11,
-              fontWeight:700, padding:"3px 10px", borderRadius:12 }}>2025</span>
-          </div>
-
-          {/* Banner info sumber data */}
-          <div style={{ background:"linear-gradient(90deg,#EEF4FF,#F0FDF4)", border:"1px solid #C7D7F5",
-            borderRadius:8, padding:"9px 12px", marginBottom:14,
-            display:"flex", alignItems:"center", gap:8 }}>
-            <span style={{ fontSize:14 }}>📄</span>
-            <div>
-              <div style={{ fontSize:11, fontWeight:700, color:C.blueMid }}>Sumber: Data Teknis DAK 2025</div>
-              <div style={{ fontSize:11, color:C.gray500 }}>Sheet 4A — Kondisi Jaringan Irigasi Kab. Donggala</div>
-            </div>
-          </div>
-
-          {[...daerahIrigasi]
-            .sort((a,b)=>new Date(b.lastUpdate)-new Date(a.lastUpdate))
-            .slice(0,6).map(d=>(
+          <h3 style={{ fontSize:15, fontWeight:700, color:C.gray900, margin:"0 0 18px" }}>
+            Pemutakhiran Data Terbaru
+          </h3>
+          {[...daerahIrigasi].sort((a,b)=>new Date(b.lastUpdate)-new Date(a.lastUpdate))
+            .slice(0,5).map(d=>(
             <div key={d.id} style={{ display:"flex", alignItems:"center", gap:12,
-              paddingBottom:10, marginBottom:10, borderBottom:`1px solid ${C.gray100}` }}>
-              <div style={{ width:34, height:34, borderRadius:9,
-                background: d.kondisiJaringan === "Rusak Berat"  ? "#FEE2E2" :
-                            d.kondisiJaringan === "Rusak Sedang" ? "#FFEDD5" :
-                            d.kondisiJaringan === "Rusak Ringan" ? "#FEF9C3" :
-                            d.kondisiJaringan === "Baik"         ? "#DCFCE7" : C.gray100,
+              paddingBottom:12, marginBottom:12, borderBottom:`1px solid ${C.gray100}` }}>
+              <div style={{ width:36, height:36, borderRadius:9, background:C.blueLight,
                 display:"flex", alignItems:"center", justifyContent:"center",
-                fontSize:15, flexShrink:0 }}>
-                {d.kondisiJaringan === "Rusak Berat"  ? "🔴" :
-                 d.kondisiJaringan === "Rusak Sedang" ? "🟠" :
-                 d.kondisiJaringan === "Rusak Ringan" ? "🟡" :
-                 d.kondisiJaringan === "Baik"         ? "🟢" : "⚪"}
-              </div>
+                fontSize:16, flexShrink:0 }}>🌊</div>
               <div style={{ flex:1, minWidth:0 }}>
                 <div style={{ fontSize:13, fontWeight:600, color:C.gray900,
                   overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{d.nama}</div>
-                <div style={{ fontSize:11, color:C.gray500 }}>
-                  {d.kecamatan}
-                  {d.nilaiJaringan > 0 && (
-                    <span style={{ marginLeft:6, fontWeight:700,
-                      color: d.nilaiJaringan >= 70 ? C.green :
-                             d.nilaiJaringan >= 55 ? C.yellow : C.red }}>
-                      · {d.nilaiJaringan.toFixed(1)}%
-                    </span>
-                  )}
-                </div>
+                <div style={{ fontSize:11, color:C.gray500 }}>{d.kecamatan} • {d.petugas}</div>
               </div>
-              <div style={{ fontSize:11, color:C.gray500, flexShrink:0,
-                background:C.gray50, padding:"3px 8px", borderRadius:6 }}>
+              <div style={{ fontSize:11, color:C.gray500, flexShrink:0 }}>
                 {new Date(d.lastUpdate).toLocaleDateString("id-ID",{day:"2-digit",month:"short",year:"numeric"})}
               </div>
             </div>
           ))}
-          <div style={{ textAlign:"center", marginTop:6 }}>
-            <span style={{ fontSize:11, color:C.gray500 }}>
-              Menampilkan {Math.min(6, daerahIrigasi.length)} dari {daerahIrigasi.length} D.I. · Semua diperbarui Jan 2025
-            </span>
-          </div>
         </div>
       </div>
     </div>
@@ -444,8 +486,6 @@ const EMPTY_FORM = {
   bendungKondisi:"Rusak Sedang", bendungNilai:"",
   salPrimerKondisi:"Rusak Sedang", salPrimerNilai:"",
   salSekunderKondisi:"Rusak Sedang", salSekunderNilai:"",
-  salTersierKondisi:"Rusak Sedang", salTersierNilai:"",
-  kondisiJaringan:"Rusak Sedang", nilaiJaringan:"",
   status:"Aktif"
 };
 
@@ -456,8 +496,6 @@ function FormModal({ mode, data, onSave, onClose }) {
     bendungKondisi: data.bendungKondisi||"Rusak Sedang", bendungNilai: data.bendungNilai||"",
     salPrimerKondisi: data.salPrimerKondisi||"Rusak Sedang", salPrimerNilai: data.salPrimerNilai||"",
     salSekunderKondisi: data.salSekunderKondisi||"Rusak Sedang", salSekunderNilai: data.salSekunderNilai||"",
-    salTersierKondisi: data.salTersierKondisi||"Rusak Sedang", salTersierNilai: data.salTersierNilai||"",
-    kondisiJaringan: data.kondisiJaringan||"Rusak Sedang", nilaiJaringan: data.nilaiJaringan||"",
     status: data.status,
   } : EMPTY_FORM);
   const [err, setErr] = useState("");
@@ -488,10 +526,6 @@ function FormModal({ mode, data, onSave, onClose }) {
       salPrimerKondisi: form.salPrimerKondisi||null,
       salSekunderNilai: Number(form.salSekunderNilai)||0,
       salSekunderKondisi: form.salSekunderKondisi||null,
-      salTersierNilai: Number(form.salTersierNilai)||0,
-      salTersierKondisi: form.salTersierKondisi||null,
-      nilaiJaringan: Number(form.nilaiJaringan)||0,
-      kondisiJaringan: form.kondisiJaringan||null,
     });
   };
 
@@ -503,6 +537,7 @@ function FormModal({ mode, data, onSave, onClose }) {
         maxHeight:"90vh", overflowY:"auto", boxShadow:"0 24px 60px rgba(0,0,0,.3)" }}
         onClick={e=>e.stopPropagation()}>
 
+        {/* Header */}
         <div style={{ background:`linear-gradient(135deg,${C.blueDark},${C.blueMid})`,
           padding:"18px 24px", display:"flex", justifyContent:"space-between", alignItems:"center",
           position:"sticky", top:0, zIndex:1 }}>
@@ -519,12 +554,14 @@ function FormModal({ mode, data, onSave, onClose }) {
               borderRadius:8, padding:"6px 12px", cursor:"pointer", fontSize:14 }}>✕</button>
         </div>
 
+        {/* Body */}
         <div style={{ padding:"20px 24px 28px" }}>
           {err && (
             <div style={{ background:"#FEE2E2", border:"1px solid #FECACA", color:C.red,
               borderRadius:8, padding:"10px 14px", fontSize:13, marginBottom:14 }}>⚠️ {err}</div>
           )}
 
+          {/* Info Umum */}
           <div style={sectionStyle}>📋 Informasi Umum</div>
           <label style={labelStyle}>Nama Daerah Irigasi *</label>
           <input value={form.nama} onChange={e=>inp("nama",e.target.value)}
@@ -555,13 +592,13 @@ function FormModal({ mode, data, onSave, onClose }) {
             </div>
           </div>
 
+          {/* Kondisi Fisik */}
           <div style={sectionStyle}>🏗️ Kondisi Fisik Jaringan Irigasi</div>
 
           {[
             ["Bendung",       "bendungKondisi",      "bendungNilai"],
             ["Sal. Primer",   "salPrimerKondisi",    "salPrimerNilai"],
             ["Sal. Sekunder", "salSekunderKondisi",  "salSekunderNilai"],
-            ["Sal. Tersier",  "salTersierKondisi",   "salTersierNilai"],
           ].map(([label, kField, nField])=>(
             <div key={label} style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12 }}>
               <div>
@@ -582,28 +619,16 @@ function FormModal({ mode, data, onSave, onClose }) {
             </div>
           ))}
 
-          <div style={sectionStyle}>📊 Rata-rata Jaringan</div>
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12 }}>
-            <div>
-              <label style={labelStyle}>Kondisi Rata-rata</label>
-              <select value={form.kondisiJaringan||""} onChange={e=>inp("kondisiJaringan",e.target.value||null)} style={fieldStyle}>
-                <option value="">— Belum Didata —</option>
-                {KONDISI_OPT.map(o=><option key={o}>{o}</option>)}
-              </select>
-            </div>
-            <div>
-              <label style={labelStyle}>Nilai Rata-rata (%)</label>
-              <input type="number" min="0" max="100" value={form.nilaiJaringan}
-                onChange={e=>inp("nilaiJaringan",e.target.value)}
-                placeholder="0 - 100" style={fieldStyle}
-                onFocus={e=>e.target.style.borderColor=C.blueMid}
-                onBlur={e=>e.target.style.borderColor=C.gray300}/>
-            </div>
+          {/* Info rata-rata auto */}
+          <div style={{ background:C.blueLight, border:`1px solid #C7D7F5`, borderRadius:8,
+            padding:"10px 14px", marginTop:14, fontSize:12, color:C.blueMid }}>
+            ℹ️ <strong>Rata-rata tertimbang</strong> dihitung otomatis: Bendung 40% · Primer 30% · Sekunder 30%
           </div>
 
+          {/* Status */}
           <div style={sectionStyle}>📌 Status</div>
           <select value={form.status} onChange={e=>inp("status",e.target.value)} style={fieldStyle}>
-            {["Aktif","Data Tidak Lengkap","Tidak Aktif"].map(o=>(
+            {["Aktif","Data Belum Lengkap","Tidak Aktif"].map(o=>(
               <option key={o}>{o}</option>
             ))}
           </select>
@@ -627,95 +652,23 @@ function FormModal({ mode, data, onSave, onClose }) {
   );
 }
 
-// ── CONFIRM DELETE MODAL ─────────────────────────────────────────
-function ConfirmDeleteModal({ target, onConfirm, onClose }) {
-  return (
-    <div style={{ position:"fixed", inset:0, background:"rgba(0,0,0,.55)",
-      display:"flex", alignItems:"center", justifyContent:"center", zIndex:1100 }}
-      onClick={onClose}>
-      <div style={{ background:C.white, borderRadius:16, width:440, maxWidth:"92vw",
-        boxShadow:"0 24px 60px rgba(0,0,0,.35)", overflow:"hidden" }}
-        onClick={e=>e.stopPropagation()}>
-
-        <div style={{ background:"linear-gradient(135deg,#7F1D1D,#DC2626)",
-          padding:"18px 24px", display:"flex", justifyContent:"space-between", alignItems:"center" }}>
-          <div>
-            <div style={{ color:"#FCA5A5", fontSize:11, fontWeight:700, textTransform:"uppercase" }}>
-              Konfirmasi Hapus Data
-            </div>
-            <div style={{ color:C.white, fontSize:15, fontWeight:800, marginTop:2 }}>
-              {target.kode} — {target.nama}
-            </div>
-          </div>
-          <button onClick={onClose}
-            style={{ background:"rgba(255,255,255,.15)", border:"none", color:C.white,
-              borderRadius:8, padding:"6px 12px", cursor:"pointer", fontSize:14 }}>✕</button>
-        </div>
-
-        <div style={{ padding:"24px" }}>
-          <div style={{ display:"flex", gap:14, alignItems:"flex-start", marginBottom:20 }}>
-            <div style={{ width:48, height:48, borderRadius:12, background:"#FEE2E2",
-              display:"flex", alignItems:"center", justifyContent:"center", fontSize:22, flexShrink:0 }}>
-              🗑️
-            </div>
-            <div>
-              <div style={{ fontSize:14, fontWeight:700, color:C.gray900, marginBottom:6 }}>
-                Apakah Anda yakin ingin menghapus data ini?
-              </div>
-              <div style={{ fontSize:13, color:C.gray500, lineHeight:1.6 }}>
-                Data <strong>{target.nama}</strong> ({target.kecamatan}) dengan luas{" "}
-                <strong>{target.luasDI} Ha</strong> akan dihapus secara permanen dari sistem.
-                Tindakan ini <strong style={{ color:C.red }}>tidak dapat dibatalkan</strong>.
-              </div>
-            </div>
-          </div>
-
-          <div style={{ background:"#FEF2F2", border:"1px solid #FECACA", borderRadius:8,
-            padding:"10px 14px", marginBottom:20 }}>
-            <div style={{ fontSize:12, color:"#991B1B", fontWeight:600 }}>
-              ⚠️ Peringatan: Hapus data hanya jika terjadi kesalahan penginputan data.
-              Pastikan data yang dihapus benar-benar tidak diperlukan.
-            </div>
-          </div>
-
-          <div style={{ display:"flex", gap:10, justifyContent:"flex-end" }}>
-            <button onClick={onClose}
-              style={{ padding:"10px 22px", borderRadius:8, border:`1.5px solid ${C.gray300}`,
-                background:C.white, color:C.gray700, cursor:"pointer", fontSize:13, fontWeight:600 }}>
-              Batal
-            </button>
-            <button onClick={onConfirm}
-              style={{ padding:"10px 22px", borderRadius:8, border:"none",
-                background:C.red, color:C.white, cursor:"pointer",
-                fontSize:13, fontWeight:700, boxShadow:"0 4px 12px rgba(220,38,38,.35)" }}>
-              🗑️ Ya, Hapus Data
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 // ── DATA PAGE ────────────────────────────────────────────────────
 function DataPage({ user }) {
-  const [data, setData]             = useState(daerahIrigasi);
-  const [search, setSearch]         = useState("");
-  const [filter, setFilter]         = useState("Semua");
-  const [tahun, setTahun]           = useState("2025");
-  const [selected, setSelected]     = useState(null);
-  const [formMode, setFormMode]     = useState(null); // null | "add" | "edit"
+  const [data, setData]         = useState(daerahIrigasi);
+  const [search, setSearch]     = useState("");
+  const [filter, setFilter]     = useState("Semua");
+  const [tahun, setTahun]       = useState("2026");
+  const [selected, setSelected] = useState(null);
+  const [formMode, setFormMode] = useState(null); // null | "add" | "edit"
   const [editTarget, setEditTarget] = useState(null);
-  const [deleteTarget, setDeleteTarget] = useState(null);
-  const [toast, setToast]           = useState("");
-  const [toastType, setToastType]   = useState("info"); // "info" | "success" | "danger"
+  const [toast, setToast]       = useState("");
 
-  const showToast = (msg, type="success") => {
-    setToast(msg); setToastType(type);
-    setTimeout(() => setToast(""), 3500);
+  const showToast = (msg) => {
+    setToast(msg);
+    setTimeout(() => setToast(""), 3000);
   };
 
-  const kondisiDisplay = (d) => d.kondisiJaringan || "Belum Didata";
+  const kondisiDisplay = (d) => hitungRataRata(d).kondisi || "Belum Didata";
 
   const filtered = data.filter(d => {
     const q = search.toLowerCase();
@@ -741,39 +694,25 @@ function DataPage({ user }) {
     showToast(`✅ Data "${form.nama}" berhasil diperbarui!`);
   };
 
-  const handleDeleteConfirm = () => {
-    const nama = deleteTarget.nama;
-    setData(prev=>prev.filter(d=>d.id !== deleteTarget.id));
-    if (selected?.id === deleteTarget.id) setSelected(null);
-    setDeleteTarget(null);
-    showToast(`🗑️ Data "${nama}" berhasil dihapus.`, "danger");
-  };
-
-  const toastBg = toastType === "danger" ? "#7F1D1D" :
-                  toastType === "success" ? C.blueDark : C.blueDark;
-
   return (
     <div>
       {/* Toast */}
       {toast && (
         <div style={{ position:"fixed", bottom:28, right:28, zIndex:2000,
-          background:toastBg, color:C.white, padding:"12px 20px",
+          background:C.blueDark, color:C.white, padding:"12px 20px",
           borderRadius:10, fontSize:13, fontWeight:600,
-          boxShadow:"0 8px 24px rgba(0,0,0,.25)", transition:"all .3s" }}>
+          boxShadow:"0 8px 24px rgba(0,0,0,.25)" }}>
           {toast}
         </div>
       )}
 
       <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:20 }}>
         <div>
-          <div style={{ display:"flex", alignItems:"center", gap:10 }}>
-            <h2 style={{ fontSize:22, fontWeight:800, color:C.gray900, margin:0 }}>Data Jaringan Irigasi</h2>
-            <span style={{ background:"linear-gradient(90deg,#003087,#0047B3)", color:"#fff",
-              fontSize:11, fontWeight:700, padding:"3px 10px", borderRadius:20 }}>2025</span>
-          </div>
+          <h2 style={{ fontSize:22, fontWeight:800, color:C.gray900, margin:0 }}>Data Jaringan Irigasi</h2>
           <p style={{ color:C.gray500, fontSize:14, marginTop:4 }}>Bidang SDA — Dinas PUPR Kab. Donggala</p>
         </div>
         <div style={{ display:"flex", gap:10, alignItems:"center" }}>
+          {/* Pemilihan Tahun */}
           <div style={{ display:"flex", alignItems:"center", gap:8,
             background:C.white, border:`1.5px solid ${C.gray300}`, borderRadius:9,
             padding:"8px 14px", boxShadow:"0 1px 4px rgba(0,0,0,.06)" }}>
@@ -798,13 +737,13 @@ function DataPage({ user }) {
         </div>
       </div>
 
-      {/* Banner info tahun */}
-      {parseInt(tahun) <= 2025 ? (
+      {/* Banner info tahun — beda tampilan untuk tahun lampau vs tahun aktif/mendatang */}
+      {parseInt(tahun) <= 2026 ? (
         <div style={{ background:C.blueLight, border:`1px solid #C7D7F5`, borderRadius:9,
           padding:"10px 16px", marginBottom:16, display:"flex", alignItems:"center", gap:10 }}>
           <span style={{ fontSize:16 }}>ℹ️</span>
           <span style={{ fontSize:13, color:C.blueMid, fontWeight:600 }}>
-            Menampilkan data kondisi jaringan irigasi Tahun <strong>{tahun}</strong> — Sumber: Data Teknis DAK 2025 · Kab. Donggala
+            Menampilkan data kondisi jaringan irigasi Tahun <strong>{tahun}</strong> — Kabupaten Donggala
           </span>
         </div>
       ) : (
@@ -817,15 +756,12 @@ function DataPage({ user }) {
             </span>
           </div>
           <p style={{ fontSize:12, color:"#92400E", margin:0, lineHeight:1.6 }}>
-            Data yang ditampilkan adalah data terakhir yang tersedia (2025). Gunakan tombol{" "}
-            <strong>＋ Tambah Data</strong> untuk menambahkan daerah irigasi baru, atau tombol{" "}
-            <strong>Edit</strong> pada setiap baris untuk memperbarui data kondisi sesuai
+            Data yang ditampilkan adalah data terakhir yang tersedia. Gunakan tombol <strong>＋ Tambah Data</strong> untuk menambahkan
+            daerah irigasi baru, atau tombol <strong>Edit</strong> pada setiap baris untuk memperbarui data kondisi sesuai
             hasil survei/IKSI Tahun {tahun}.
           </p>
         </div>
       )}
-
-      {/* Search & Filter */}
       <div style={{ display:"flex", flexWrap:"wrap", gap:10, alignItems:"center", marginBottom:16 }}>
         <div style={{ position:"relative", flex:1, minWidth:200 }}>
           <span style={{ position:"absolute", left:12, top:"50%", transform:"translateY(-50%)",
@@ -847,14 +783,13 @@ function DataPage({ user }) {
         ))}
       </div>
 
-      {/* Table */}
       <div style={{ background:C.white, borderRadius:14, boxShadow:"0 2px 12px rgba(0,48,135,.08)",
         overflow:"hidden" }}>
         <div style={{ overflowX:"auto" }}>
           <table style={{ width:"100%", borderCollapse:"collapse", fontSize:12 }}>
             <thead>
               <tr style={{ background:`linear-gradient(90deg,${C.blueDark},${C.blueMid})` }}>
-                {["Kode","Nama D.I.","Kecamatan","Luas D.I.\n(Ha)","Luas Sawah\n(Ha)","Bendung\nKondisi","Bendung\nNilai (%)","Sal. Primer\nKondisi","Sal. Primer\nNilai (%)","Sal. Sekunder\nKondisi","Sal. Sekunder\nNilai (%)","Sal. Tersier\nKondisi","Sal. Tersier\nNilai (%)","Rata-rata\nJaringan","Nilai Rata-rata\n(%)","Status","Aksi"].map(h=>(
+                {["Kode","Nama D.I.","Kecamatan","Luas D.I.\n(Ha)","Luas Sawah\n(Ha)","Bendung\nKondisi","Bendung\nNilai (%)","Sal. Primer\nKondisi","Sal. Primer\nNilai (%)","Sal. Sekunder\nKondisi","Sal. Sekunder\nNilai (%)","Rata-rata\nTertimbang","Nilai Rata-rata\n(%)","Status","Aksi"].map(h=>(
                   <th key={h} style={{ padding:"10px 12px", textAlign:"left", color:C.white,
                     fontWeight:700, fontSize:11, whiteSpace:"pre-line", lineHeight:1.3 }}>{h}</th>
                 ))}
@@ -862,7 +797,7 @@ function DataPage({ user }) {
             </thead>
             <tbody>
               {filtered.length===0 ? (
-                <tr><td colSpan={17} style={{ textAlign:"center", padding:40, color:C.gray500 }}>
+                <tr><td colSpan={15} style={{ textAlign:"center", padding:40, color:C.gray500 }}>
                   Tidak ada data ditemukan
                 </td></tr>
               ) : filtered.map((d,i)=>(
@@ -875,40 +810,27 @@ function DataPage({ user }) {
                   <td style={{ padding:"10px 12px", fontWeight:600, color:C.gray900, whiteSpace:"nowrap" }}>{d.nama}</td>
                   <td style={{ padding:"10px 12px", color:C.gray700, whiteSpace:"nowrap" }}>{d.kecamatan}</td>
                   <td style={{ padding:"10px 12px", color:C.gray700, textAlign:"right" }}>{d.luasDI.toLocaleString()}</td>
-                  <td style={{ padding:"10px 12px", color:C.gray700, textAlign:"right" }}>{d.luasSawah > 0 ? d.luasSawah.toLocaleString() : "—"}</td>
+                  <td style={{ padding:"10px 12px", color:C.gray700, textAlign:"right" }}>{d.luasSawah > 0 ? d.luasSawah.toLocaleString() : "-"}</td>
                   <td style={{ padding:"10px 12px" }}>{d.bendungKondisi ? <Badge label={d.bendungKondisi} map={kondisiWarna}/> : <span style={{color:C.gray300,fontSize:11}}>—</span>}</td>
                   <td style={{ padding:"10px 12px", color:C.gray700, textAlign:"right" }}>{d.bendungNilai > 0 ? d.bendungNilai.toFixed(2)+"%" : "—"}</td>
                   <td style={{ padding:"10px 12px" }}>{d.salPrimerKondisi ? <Badge label={d.salPrimerKondisi} map={kondisiWarna}/> : <span style={{color:C.gray300,fontSize:11}}>—</span>}</td>
                   <td style={{ padding:"10px 12px", color:C.gray700, textAlign:"right" }}>{d.salPrimerNilai > 0 ? d.salPrimerNilai.toFixed(2)+"%" : "—"}</td>
                   <td style={{ padding:"10px 12px" }}>{d.salSekunderKondisi ? <Badge label={d.salSekunderKondisi} map={kondisiWarna}/> : <span style={{color:C.gray300,fontSize:11}}>—</span>}</td>
                   <td style={{ padding:"10px 12px", color:C.gray700, textAlign:"right" }}>{d.salSekunderNilai > 0 ? d.salSekunderNilai.toFixed(2)+"%" : "—"}</td>
-                  <td style={{ padding:"10px 12px" }}>{d.salTersierKondisi ? <Badge label={d.salTersierKondisi} map={kondisiWarna}/> : <span style={{color:C.gray300,fontSize:11}}>—</span>}</td>
-                  <td style={{ padding:"10px 12px", color:C.gray700, textAlign:"right" }}>{d.salTersierNilai > 0 ? d.salTersierNilai.toFixed(2)+"%" : "—"}</td>
                   <td style={{ padding:"10px 12px" }}><Badge label={kondisiDisplay(d)} map={kondisiWarna}/></td>
-                  <td style={{ padding:"10px 12px", color:C.gray700, textAlign:"right", fontWeight:700 }}>{d.nilaiJaringan > 0 ? d.nilaiJaringan.toFixed(2)+"%" : "—"}</td>
+                  <td style={{ padding:"10px 12px", color:C.gray700, textAlign:"right", fontWeight:700 }}>{hitungRataRata(d).nilai > 0 ? hitungRataRata(d).nilai.toFixed(2)+"%" : "—"}</td>
                   <td style={{ padding:"10px 12px" }}><Badge label={d.status} map={statusWarna}/></td>
                   <td style={{ padding:"10px 12px" }}>
-                    <div style={{ display:"flex", gap:5, alignItems:"center" }}>
-                      {/* Detail */}
+                    <div style={{ display:"flex", gap:6 }}>
                       <button onClick={()=>setSelected(d)}
                         style={{ padding:"5px 10px", borderRadius:6, border:`1px solid ${C.blueMid}`,
                           background:C.blueLight, color:C.blueMid, cursor:"pointer",
                           fontSize:11, fontWeight:600 }}>Detail</button>
-                      {/* Edit — admin only */}
                       {user?.role === "admin" && (
-                        <button onClick={()=>{ setEditTarget(d); setFormMode("edit"); }}
-                          style={{ padding:"5px 10px", borderRadius:6,
-                            border:`1px solid ${C.orange}`, background:C.orangeLight,
-                            color:C.orange, cursor:"pointer", fontSize:11, fontWeight:600 }}>Edit</button>
-                      )}
-                      {/* Hapus — admin only */}
-                      {user?.role === "admin" && (
-                        <button onClick={()=>setDeleteTarget(d)}
-                          title="Hapus data ini"
-                          style={{ padding:"5px 8px", borderRadius:6,
-                            border:"1px solid #FECACA", background:"#FEF2F2",
-                            color:C.red, cursor:"pointer", fontSize:13, fontWeight:700,
-                            lineHeight:1 }}>🗑️</button>
+                      <button onClick={()=>{ setEditTarget(d); setFormMode("edit"); }}
+                        style={{ padding:"5px 10px", borderRadius:6,
+                          border:`1px solid ${C.orange}`, background:C.orangeLight,
+                          color:C.orange, cursor:"pointer", fontSize:11, fontWeight:600 }}>Edit</button>
                       )}
                     </div>
                   </td>
@@ -918,9 +840,8 @@ function DataPage({ user }) {
           </table>
         </div>
         <div style={{ padding:"12px 16px", background:C.gray50, borderTop:`1px solid ${C.gray100}`,
-          fontSize:12, color:C.gray500, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
-          <span>Menampilkan {filtered.length} dari {data.length} daerah irigasi — Kab. Donggala</span>
-          <span style={{ color:C.blueMid, fontWeight:600 }}>Data Teknis DAK 2025</span>
+          fontSize:12, color:C.gray500 }}>
+          Menampilkan {filtered.length} dari {data.length} daerah irigasi — Kab. Donggala
         </div>
       </div>
 
@@ -958,11 +879,10 @@ function DataPage({ user }) {
               <div style={{ fontSize:12, fontWeight:700, color:C.blueMid, marginTop:12, marginBottom:8,
                 textTransform:"uppercase", letterSpacing:1 }}>Kondisi Fisik Jaringan Irigasi</div>
               {[
-                ["Bendung",        selected.bendungKondisi,      selected.bendungNilai],
-                ["Sal. Primer",    selected.salPrimerKondisi,    selected.salPrimerNilai],
-                ["Sal. Sekunder",  selected.salSekunderKondisi,  selected.salSekunderNilai],
-                ["Sal. Tersier",   selected.salTersierKondisi,   selected.salTersierNilai],
-              ].map(([label,kond,nilai])=>(
+                ["Bendung",        selected.bendungKondisi,      selected.bendungNilai,      "bendung"],
+                ["Sal. Primer",    selected.salPrimerKondisi,    selected.salPrimerNilai,    "saluran"],
+                ["Sal. Sekunder",  selected.salSekunderKondisi,  selected.salSekunderNilai,  "saluran"],
+              ].map(([label,kond,nilai,tipe])=>(
                 <div key={label} style={{ display:"flex", justifyContent:"space-between",
                   alignItems:"center", paddingBottom:8, marginBottom:8,
                   borderBottom:`1px solid ${C.gray100}` }}>
@@ -974,20 +894,21 @@ function DataPage({ user }) {
                 </div>
               ))}
               <div style={{ display:"flex", justifyContent:"space-between",
-                alignItems:"center", background:C.blueLight,
+                alignItems:"center", paddingBottom:8, marginBottom:8,
+                borderBottom:`1px solid ${C.gray100}`, background:C.blueLight,
                 margin:"0 -8px 8px", padding:"8px 8px", borderRadius:6 }}>
-                <span style={{ fontSize:13, fontWeight:700, color:C.blueDark }}>Rata-rata Jaringan</span>
+                <span style={{ fontSize:13, fontWeight:700, color:C.blueDark }}>Rata-rata Tertimbang</span>
                 <div style={{ display:"flex", alignItems:"center", gap:8 }}>
-                  <Badge label={selected.kondisiJaringan||"Belum Didata"} map={kondisiWarna}/>
+                  <Badge label={kondisiDisplay(selected)} map={kondisiWarna}/>
                   <span style={{ fontSize:13, fontWeight:700, color:C.blueDark }}>
-                    {selected.nilaiJaringan > 0 ? selected.nilaiJaringan.toFixed(2)+"%" : "—"}
+                    {hitungRataRata(selected).nilai > 0 ? hitungRataRata(selected).nilai.toFixed(2)+"%" : "—"}
                   </span>
                 </div>
               </div>
               {[
                 ["Status",    null, <Badge label={selected.status} map={statusWarna}/>],
-                ["Sumber Data","Data Teknis DAK 2025 / e-PAKSI", null],
-                ["Tahun Data", "2025", null],
+                ["Sumber Data","Data Kondisi Fisik Tahun 2025", null],
+                ["Tahun Data", tahun, null],
               ].map(([label,val,node])=>(
                 <div key={label} style={{ display:"flex", justifyContent:"space-between",
                   alignItems:"center", paddingBottom:8, marginBottom:8,
@@ -996,22 +917,14 @@ function DataPage({ user }) {
                   {node || <span style={{ fontSize:13, fontWeight:600, color:C.gray900 }}>{val}</span>}
                 </div>
               ))}
-
-              {/* Action buttons in detail modal — admin only */}
-              {user?.role === "admin" && (
-                <div style={{ display:"flex", gap:10, marginTop:12, justifyContent:"flex-end" }}>
-                  <button onClick={()=>{ setDeleteTarget(selected); setSelected(null); }}
-                    style={{ padding:"9px 16px", borderRadius:8,
-                      border:"1px solid #FECACA", background:"#FEF2F2",
-                      color:C.red, cursor:"pointer", fontSize:13, fontWeight:700 }}>
-                    🗑️ Hapus
-                  </button>
-                  <button onClick={()=>{ setSelected(null); setEditTarget(selected); setFormMode("edit"); }}
-                    style={{ padding:"9px 20px", borderRadius:8, border:"none",
-                      background:C.orange, color:C.white, cursor:"pointer",
-                      fontSize:13, fontWeight:700 }}>✏️ Edit Data Ini</button>
-                </div>
-              )}
+              <div style={{ display:"flex", justifyContent:"flex-end", marginTop:8 }}>
+                {user?.role === "admin" && (
+                <button onClick={()=>{ setSelected(null); setEditTarget(selected); setFormMode("edit"); }}
+                  style={{ padding:"9px 20px", borderRadius:8, border:"none",
+                    background:C.orange, color:C.white, cursor:"pointer",
+                    fontSize:13, fontWeight:700 }}>✏️ Edit Data Ini</button>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -1024,15 +937,6 @@ function DataPage({ user }) {
           data={editTarget}
           onSave={formMode==="add" ? handleAdd : handleEdit}
           onClose={()=>{ setFormMode(null); setEditTarget(null); }}
-        />
-      )}
-
-      {/* Confirm Delete Modal */}
-      {deleteTarget && (
-        <ConfirmDeleteModal
-          target={deleteTarget}
-          onConfirm={handleDeleteConfirm}
-          onClose={()=>setDeleteTarget(null)}
         />
       )}
     </div>
@@ -1065,8 +969,8 @@ export default function App() {
     if (active==="data")      return <DataPage user={user} />;
     if (active==="sungai")    return <PlaceholderPage icon="🌊" title="Data Sungai & Pantai"    desc="Basis data kondisi sungai dan garis pantai Kab. Donggala" />;
     if (active==="peta")      return <PlaceholderPage icon="🗺️" title="Peta Sebaran Irigasi"    desc="Visualisasi spasial jaringan irigasi Kab. Donggala" />;
-    if (active==="laporan")   return <PlaceholderPage icon="📋" title="Modul Laporan"           desc="Cetak dan ekspor laporan kondisi jaringan irigasi"  />;
-    if (active==="pengguna")  return <PlaceholderPage icon="👥" title="Manajemen Pengguna"      desc="Kelola akun dan hak akses pengguna sistem"          />;
+    if (active==="laporan")   return <PlaceholderPage icon="📋" title="Modul Laporan"         desc="Cetak dan ekspor laporan kondisi jaringan irigasi"  />;
+    if (active==="pengguna")  return <PlaceholderPage icon="👥" title="Manajemen Pengguna"    desc="Kelola akun dan hak akses pengguna sistem"          />;
   };
 
   return (
